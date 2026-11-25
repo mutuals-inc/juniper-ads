@@ -1,0 +1,1009 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>:root{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Juniper staged ads</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Geist:wght@400;500;600&display=swap">
+<style>
+/* Layout: one left-aligned reading column (max 1160px). A rising four-step staircase opens the page;
+   below it, quiet tables and thin bars on white panels over a cool lilac-grey ground. */
+:root {
+  --bg: #f4f4f8;
+  --surface: #ffffff;
+  --ink: #1c1b2b;
+  --ink-2: #4c4a62;
+  --muted: #75738c;
+  --line: #e2e0ec;
+  --line-strong: #c9c6d9;
+  --accent: #4f46c8;
+  --accent-soft: #e9e7fb;
+  --now-fill: #4f46c8;
+  --now-ink: #ffffff;
+  --data: #4f46c8;
+  --bench: #d0752e;
+  --track: #efeef5;
+  --good: #0ca30c;
+  --good-ink: #006300;
+  --warn: #fab219;
+  --warn-ink: #7a5000;
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Geist", "Inter", -apple-system, "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121119; --surface: #1b1a29; --ink: #ecebf5; --ink-2: #bdbbd0; --muted: #8f8da6;
+    --line: #2c2a3e; --line-strong: #403d58; --accent: #9b94f5; --accent-soft: #272449;
+    --data: #8077ee; --bench: #c4702c; --track: #24233a;
+    --good-ink: #3fcf3f; --warn-ink: #f5c04a; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121119; --surface: #1b1a29; --ink: #ecebf5; --ink-2: #bdbbd0; --muted: #8f8da6;
+  --line: #2c2a3e; --line-strong: #403d58; --accent: #9b94f5; --accent-soft: #272449;
+  --data: #8077ee; --bench: #c4702c; --track: #24233a;
+  --good-ink: #3fcf3f; --warn-ink: #f5c04a; color-scheme: dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+.page {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 48px 72px;
+  display: grid;
+  gap: 64px;
+}
+h1, h2 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.02em; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2rem, 4.4vw, 3.1rem); line-height: 1.05; }
+h2 { font-size: clamp(1.4rem, 2.4vw, 1.75rem); line-height: 1.15; }
+h3 { font-family: var(--font-body); font-weight: 600; font-size: 1.05rem; margin: 0; line-height: 1.3; }
+p { margin: 0; }
+.num, td, .val { font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+.small { font-size: 13px; }
+section { display: grid; gap: 20px; min-width: 0; }
+.sec-head { display: grid; gap: 6px; max-width: 70ch; }
+.sec-head p { color: var(--ink-2); }
+
+/* Hero */
+.hero { display: grid; gap: 18px; }
+.lede { font-size: 1.12rem; color: var(--ink-2); max-width: 64ch; }
+.glance { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.glance div { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 2px; min-width: 0; }
+.glance b { font-weight: 600; }
+.glance .big { font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; letter-spacing: -0.01em; }
+.meta { font-size: 13px; color: var(--muted); }
+
+/* Stage ladder */
+.ladder { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 12px; }
+.stage { display: contents; }
+.tread { grid-row: 1; align-self: end; border-radius: 12px 12px 0 0; padding: 12px 14px; display: flex; flex-direction: column; gap: 2px; border: 1px solid var(--line-strong); border-bottom: 0; }
+.tread .n { font-size: 13px; font-weight: 500; }
+.tread .name { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; line-height: 1.15; letter-spacing: -0.01em; }
+.tread .when { margin-top: auto; align-self: flex-start; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 999px; }
+.stage-body { grid-row: 2; align-self: start; background: var(--surface); border: 1px solid var(--line-strong); border-radius: 0 0 12px 12px; padding: 14px; display: grid; gap: 10px; align-content: start; font-size: 14px; min-width: 0; }
+.stage-body ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.s1 > * { grid-column: 1; } .s2 > * { grid-column: 2; } .s3 > * { grid-column: 3; } .s4 > * { grid-column: 4; }
+.s1 .tread { height: 96px; } .s2 .tread { height: 128px; } .s3 .tread { height: 160px; } .s4 .tread { height: 192px; }
+.now .tread { background: var(--now-fill); color: var(--now-ink); border-color: var(--now-fill); }
+.now .tread .when { background: rgba(255,255,255,.18); color: var(--now-ink); }
+.now .stage-body { border-color: var(--now-fill); border-top: 3px solid var(--now-fill); }
+.later .tread { background: transparent; border-style: dashed; }
+.later .tread .when { border: 1px solid var(--line-strong); color: var(--muted); }
+.later .stage-body { border-style: dashed; }
+.callout { font-weight: 600; color: var(--accent); }
+.rounds { display: grid; gap: 6px; }
+.round { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; padding: 8px 10px; border-radius: 8px; background: var(--track); }
+.round b { font-weight: 600; }
+.reach-def { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.reach-def div { border-top: 2px solid var(--ink); padding-top: 8px; min-width: 0; }
+.reach-def .goal { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; }
+.reach-def .small { color: var(--ink-2); display: block; margin-top: 2px; }
+.tag.lead { margin-left: 0; justify-self: start; margin-bottom: 3px; }
+.tag.plain { background: var(--track); color: var(--ink-2); }
+.cell .tgt { font-size: 13.5px; }
+.run tbody th small, .run thead th small { display: block; }
+.matrix.run tbody th { width: 22%; }
+.opts { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 14px; color: var(--ink-2); max-width: 92ch; }
+.opts b { color: var(--ink); font-weight: 600; }
+.caps tbody th { white-space: nowrap; }
+.caps td { min-width: 200px; }
+.annex-link { font-size: 13px; font-weight: 600; color: var(--accent); text-decoration: underline; text-underline-offset: 3px; justify-self: start; }
+.annex-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+[id^="annex-"] { scroll-margin-top: 16px; }
+.annex-tbl { min-width: 720px; }
+.across { min-width: 480px; }
+.annex .panel { max-width: 640px; }
+.untested-tbl { min-width: 820px; }
+.doc { font-size: 12.5px; color: var(--accent); text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; }
+.doc:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+.picks { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: 14px; color: var(--ink-2); max-width: 92ch; }
+.picks b { color: var(--ink); font-weight: 600; }
+
+/* Panels, charts */
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: grid; gap: 14px; min-width: 0; }
+.cross { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; }
+.chart-title { font-weight: 600; font-size: 14px; }
+.chart-sub { font-size: 13px; color: var(--muted); }
+.mchart { display: grid; gap: 8px; margin-top: 10px; }
+.mrow { display: grid; grid-template-columns: minmax(0, 10.5rem) minmax(0, 1fr) 4.4rem; gap: 10px; align-items: center; font-size: 13px; }
+.mrow .lab { color: var(--ink-2); }
+.mrow .val { text-align: right; font-weight: 600; }
+.track { height: 10px; background: var(--track); border-radius: 0 5px 5px 0; position: relative; }
+.fill { display: block; height: 100%; width: var(--w); background: var(--data); border-radius: 0 4px 4px 0; }
+.fill.bench { background: var(--bench); }
+.none { font-size: 12px; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 10px; height: 10px; border-radius: 2px; background: var(--data); display: inline-block; }
+.sw.bench { background: var(--bench); }
+
+.why { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.why .panel { align-content: start; }
+.why .goal-line { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; letter-spacing: -0.01em; line-height: 1.15; }
+.why .goal-line small { display: block; font-family: var(--font-body); font-weight: 500; font-size: 13px; color: var(--muted); letter-spacing: 0; margin-bottom: 2px; }
+.why p.reason { color: var(--ink-2); font-size: 14px; }
+.facts { margin: 0; display: grid; gap: 0; font-size: 13.5px; }
+.facts div { display: grid; grid-template-columns: 7.2rem minmax(0, 1fr); gap: 10px; padding: 7px 0; border-top: 1px solid var(--line); }
+.facts dt { color: var(--muted); }
+.facts dd { margin: 0; font-variant-numeric: tabular-nums; }
+.why .mrow { grid-template-columns: minmax(0, 8.6rem) minmax(0, 1fr) 3.8rem; }
+
+/* Tables */
+.tbl-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+th, td { padding: 9px 12px; text-align: left; vertical-align: top; border-top: 1px solid var(--line); }
+thead th { border-top: 0; font-weight: 500; color: var(--muted); font-size: 12.5px; vertical-align: bottom; white-space: nowrap; }
+td.r, th.r { text-align: right; white-space: nowrap; }
+tbody th { font-weight: 600; }
+tr.total td, tr.total th { font-weight: 600; border-top: 1px solid var(--line-strong); background: var(--track); }
+.sticky { position: sticky; left: 0; background: var(--surface); z-index: 1; }
+tr.total .sticky { background: var(--track); }
+td .sub, th .sub { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
+.wide { min-width: 1040px; }
+.mid { min-width: 860px; }
+.barcell { white-space: nowrap; }
+.barcell .bw { display: flex; align-items: center; gap: 8px; justify-content: flex-end; }
+.barcell .track { flex: 0 0 64px; height: 8px; }
+.tag { display: inline-block; font-size: 11.5px; font-weight: 600; padding: 1px 7px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); margin-left: 6px; vertical-align: 1px; }
+
+/* Matrix */
+.matrix { min-width: 760px; }
+.matrix td, .matrix th { padding: 12px; }
+.matrix thead th { color: var(--ink); font-weight: 600; font-size: 13.5px; white-space: normal; }
+.matrix thead th small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; }
+.matrix tbody th { width: 15%; }
+.matrix tbody th small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; }
+.cell { display: grid; gap: 1px; }
+.cell + .cell { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }
+.cell .cl { font-weight: 600; }
+.cell .cost { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; letter-spacing: -0.01em; }
+.cell .vid { font-size: 12px; color: var(--muted); }
+.nt { color: var(--muted); font-size: 13px; }
+.matrix tfoot td, .matrix tfoot th { background: var(--track); font-weight: 600; border-top: 1px solid var(--line-strong); }
+
+.plat { display: grid; gap: 12px; }
+.plat-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.plat-head .meta-line { font-size: 13px; color: var(--muted); }
+.read { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 14px; color: var(--ink-2); max-width: 90ch; }
+.read b { color: var(--ink); font-weight: 600; }
+
+/* Capture */
+.capture { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.status { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; }
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex: none; }
+.dot.good { background: var(--good); }
+.dot.warn { background: var(--warn); }
+.status.good { color: var(--good-ink); }
+.status.warn { color: var(--warn-ink); }
+.pools { width: 100%; font-size: 13px; border-collapse: collapse; }
+.pools td { padding: 6px 0; border-top: 1px solid var(--line); }
+.pools td.r { padding-left: 10px; }
+.capture p.small { color: var(--ink-2); }
+
+.freq { display: grid; gap: 10px; }
+.strip { position: relative; height: 92px; margin: 4px 8px 0; }
+.axis { position: absolute; left: 0; right: 0; top: 46px; height: 1px; background: var(--line-strong); }
+.tick { position: absolute; top: 52px; font-size: 11.5px; color: var(--muted); transform: translateX(-50%); }
+.tick.first { transform: none; } .tick.last { transform: translateX(-100%); }
+.pt { position: absolute; top: 46px; transform: translate(-50%, -50%); width: 12px; height: 12px; border-radius: 50%; background: var(--data); box-shadow: 0 0 0 2px var(--surface); }
+.pl { position: absolute; font-size: 12.5px; white-space: nowrap; transform: translateX(-50%); }
+.pl b { font-weight: 600; }
+.pl.up { top: 6px; } .pl.down { top: 66px; }
+.pl.edge { transform: translateX(-6px); }
+
+/* Round 2 */
+.draft { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: var(--warn-ink); border: 1px solid var(--line-strong); background: var(--surface); padding: 3px 10px; border-radius: 999px; }
+.newvids { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.newvids div { border-top: 2px solid var(--accent); padding-top: 8px; font-size: 14px; min-width: 0; }
+.newvids b { display: block; font-weight: 600; }
+tr.grp th { background: var(--track); font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: -0.005em; }
+.option { border-left: 3px solid var(--accent); padding: 4px 0 4px 14px; display: grid; gap: 4px; max-width: 90ch; }
+.option b { font-weight: 600; }
+
+.notes ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; color: var(--ink-2); font-size: 14px; max-width: 92ch; }
+.notes b { color: var(--ink); font-weight: 600; }
+footer { font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; }
+
+@media (max-width: 900px) {
+  .why, .capture { grid-template-columns: 1fr; }
+  .cross { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .page { padding-block: 32px 56px; gap: 48px; }
+  .ladder { grid-template-columns: 1fr; row-gap: 14px; }
+  .stage { display: block; }
+  .tread { height: auto !important; min-height: 0; flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+  .tread .when { margin-top: 0; margin-left: auto; }
+  .s1 .tread { width: 70%; } .s2 .tread { width: 80%; } .s3 .tread { width: 90%; } .s4 .tread { width: 100%; }
+  .glance, .reach-def, .newvids { grid-template-columns: 1fr; }
+  .mrow { grid-template-columns: minmax(0, 7.5rem) minmax(0, 1fr) 3.8rem; }
+  .caps tbody th, .matrix.run tbody th { white-space: normal; width: 7.5rem; min-width: 7.5rem; max-width: 7.5rem; }
+}
+</style>
+
+</head>
+<body>
+<main class="page">
+
+  <header class="hero">
+    <h1>Juniper Pi paid ads, stage by stage</h1>
+    <p class="lede">Stage 1 is reach. Round 1 ran Nov 18–22 on YouTube, TikTok and Instagram: 14 ads, $299.81. This week's niche run went live Wed Nov 25 on all three platforms, with YouTube already in Stage 2.</p>
+    <div class="glance" aria-label="Round 1 totals by platform">
+      <div><b>YouTube</b><span class="big num">5,644 views</span><span class="small muted num">$81.57, $0.0145 per view</span></div>
+      <div><b>TikTok</b><span class="big num">708 follows</span><span class="small muted num">$159.67, $0.23 per follow</span></div>
+      <div><b>Instagram</b><span class="big num">1,841 interactions</span><span class="small muted num">$58.57, $0.032 per interaction</span></div>
+    </div>
+    <p class="meta">Round 1 read in each ads manager on Mon Nov 23. This week's setup read Wed Nov 25. All times US Eastern.</p>
+  </header>
+
+  <section id="stages" aria-labelledby="stages-h">
+    <div class="sec-head">
+      <h2 id="stages-h">The stage ladder</h2>
+      <p>Each stage starts once the one before has built pools big enough to act on.</p>
+    </div>
+
+    <div class="ladder">
+      <div class="stage s1 now">
+        <div class="tread"><span class="n">Stage 1</span><span class="name">Reach</span><span class="when">Now: TikTok, Instagram</span></div>
+        <div class="stage-body">
+          <p>Reach as many people as cheaply as possible and learn whether they engage.</p>
+          <p><b>Sub-goal:</b> the cheapest audience cluster for each format.</p>
+          <div class="rounds">
+            <div class="round"><b>Round 1</b><span>Nov 18–22. Done, $299.81. One broad audience on TikTok and Instagram.</span></div>
+            <div class="round"><b>Niche run</b><span>Nov 25–27. TikTok and Instagram test the same three niches. Live.</span></div>
+          </div>
+          <p class="small muted">Repetition means new content, never the same video. TikTok and Instagram stay in Stage 1 because round 1 left no niche pools to retarget.</p>
+        </div>
+      </div>
+
+      <div class="stage s2 now">
+        <div class="tread"><span class="n">Stage 2</span><span class="name">Repetition and retargeting</span><span class="when">Now: YouTube</span></div>
+        <div class="stage-body">
+          <p class="callout">Retargeting is part of Stage 2.</p>
+          <p>Each cluster's captured pool sees Juniper again, with new content in the format it engaged with.</p>
+          <p>YouTube moves here this week. Its pools were captured in Stage 1, so each niche gets a retargeting cell next to a cold cell with the same video.</p>
+          <p class="small muted">TikTok and Instagram follow once this week's niche pools are big enough to target.</p>
+        </div>
+      </div>
+
+      <div class="stage s3 later">
+        <div class="tread"><span class="n">Stage 3</span><span class="name">Conversion</span><span class="when">Later</span></div>
+        <div class="stage-body">
+          <p>Click-to-Instagram-Direct into DMs, then Juniper on the web or Discord.</p>
+          <p class="small muted">Click-to-Instagram-Direct runs cold as "Instagram Stage 1 (alt)" to build its own pool. It starts when the new DM-first video lands.</p>
+        </div>
+      </div>
+
+      <div class="stage s4 later">
+        <div class="tread"><span class="n">Stage 4</span><span class="name">Retention</span><span class="when">Later</span></div>
+        <div class="stage-body">
+          <p>Bring converted fans back with streams, releases and Discord.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reach-def" aria-label="Where each platform is this week">
+      <div><span class="small muted">YouTube, goal: video views</span><div class="goal">Stage 2, retargeting</div><span class="small">Retarget cells next to cold cells, same video.</span></div>
+      <div><span class="small muted">TikTok, goal: follows</span><div class="goal">Stage 1, niche clusters</div><span class="small">Three niche ad groups.</span></div>
+      <div><span class="small muted">Instagram, goal: engagement</span><div class="goal">Stage 1, niche clusters</div><span class="small">Each niche next to a broad control. Click-to-Instagram-Direct as Stage 1 (alt).</span></div>
+    </div>
+  </section>
+
+  <section id="why" aria-labelledby="why-h">
+    <div class="sec-head">
+      <h2 id="why-h">Why each platform has its goal</h2>
+      <p>CPM was nearly the same everywhere, about $10 per 1,000 impressions. The goal decides what that money buys. The product model is retention, so a goal wins when it buys people who keep seeing Juniper. The full data is in the <a class="annex-link" href="#annex">annex</a>.</p>
+    </div>
+
+    <div class="panel">
+      <div class="cross">
+        <div>
+          <div class="chart-title">CPM, cost per 1,000 impressions</div>
+          <div class="chart-sub">Round 1, all ads per platform</div>
+          <div class="mchart">
+            <div class="mrow"><span class="lab">TikTok</span><span class="track"><span class="fill" style="--w:94.5%" title="TikTok CPM $9.48"></span></span><span class="val">$9.48</span></div>
+            <div class="mrow"><span class="lab">Instagram</span><span class="track"><span class="fill" style="--w:97.9%" title="Instagram CPM $9.82"></span></span><span class="val">$9.82</span></div>
+            <div class="mrow"><span class="lab">YouTube</span><span class="track"><span class="fill" style="--w:100%" title="YouTube CPM $10.03"></span></span><span class="val">$10.03</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="chart-title">Cost per new follower</div>
+          <div class="chart-sub">Only TikTok was optimised for follows</div>
+          <div class="mchart">
+            <div class="mrow"><span class="lab">TikTok</span><span class="track"><span class="fill" style="--w:10.6%" title="TikTok $0.23 per follow"></span></span><span class="val">$0.23</span></div>
+            <div class="mrow"><span class="lab">Instagram</span><span class="track"><span class="fill" style="--w:100%" title="Instagram $2.17 per follow"></span></span><span class="val">$2.17</span></div>
+            <div class="mrow"><span class="lab">YouTube</span><span class="none">0 subscribers from $81.57</span><span class="val">None</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="why">
+      <article class="panel">
+        <div class="goal-line"><small>TikTok</small>Optimise for follows</div>
+        <p class="reason">Follows are the one result that has held across three separate runs, and they stick. Traffic and Twitch-click goals bought cheap clicks with almost no outcome, and traffic leaked to Pangle.</p>
+        <dl class="facts">
+          <div><dt>Round 1</dt><dd>708 follows for $159.67</dd></div>
+          <div><dt>Follow rate</dt><dd>4.20% of impressions</dd></div>
+          <div><dt>Did they stay?</dt><dd>TikTok Studio: 827 net new followers in the 7 days to Nov 23, more than the 708 paid</dd></div>
+        </dl>
+        <div>
+          <div class="chart-title">Cost per follow</div>
+          <div class="mchart">
+            <div class="mrow"><span class="lab">Best earlier ad, Oct 31–Nov 8</span><span class="track"><span class="fill bench" style="--w:68%" title="Best earlier Follows ad $0.17"></span></span><span class="val">$0.17</span></div>
+            <div class="mrow"><span class="lab">Round 1, stream clip</span><span class="track"><span class="fill" style="--w:76%" title="Round 1 stream clip $0.19"></span></span><span class="val">$0.19</span></div>
+            <div class="mrow"><span class="lab">Round 1, all three ads</span><span class="track"><span class="fill" style="--w:92%" title="Round 1 all ads $0.23"></span></span><span class="val">$0.23</span></div>
+            <div class="mrow"><span class="lab">Our bar</span><span class="track"><span class="fill bench" style="--w:100%" title="Our bar $0.25"></span></span><span class="val">$0.25</span></div>
+          </div>
+        </div>
+        <div class="legend"><span><i class="sw"></i>Round 1</span><span><i class="sw bench"></i>Benchmark</span></div>
+        <a class="annex-link" href="#annex-tiktok">TikTok data behind this choice, in the annex</a>
+      </article>
+
+      <article class="panel">
+        <div class="goal-line"><small>YouTube</small>Optimise for views</div>
+        <p class="reason">Views are the cheapest way to put Juniper in front of a chosen cluster, and every viewer lands in a list we can retarget. Paid views haven't turned into subscribers, so YouTube's job is building audiences.</p>
+        <dl class="facts">
+          <div><dt>Round 1</dt><dd>5,644 views for $81.57</dd></div>
+          <div><dt>View rate</dt><dd>69.4%, and 68.3% watched to the end</dd></div>
+          <div><dt>Reach</dt><dd>9,160 unique people</dd></div>
+          <div><dt>Subscribers</dt><dd>0 earned (also 0 net in the Nov 11–15 music video test)</dd></div>
+        </dl>
+        <div>
+          <div class="chart-title">Cost per view</div>
+          <div class="mchart">
+            <div class="mrow"><span class="lab">Round 1</span><span class="track"><span class="fill" style="--w:36.3%" title="Round 1 $0.0145 per view"></span></span><span class="val">$0.0145</span></div>
+            <div class="mrow"><span class="lab">Music video test, Nov 11–15</span><span class="track"><span class="fill bench" style="--w:72.5%" title="Music video test $0.029 per view"></span></span><span class="val">$0.029</span></div>
+            <div class="mrow"><span class="lab">Our bid cap</span><span class="track"><span class="fill bench" style="--w:100%" title="Target CPV bid cap $0.04"></span></span><span class="val">$0.04</span></div>
+          </div>
+          <p class="chart-sub" style="margin-top:8px">About 64% under the cap, and half the cost of the earlier test.</p>
+        </div>
+        <div class="legend"><span><i class="sw"></i>Round 1</span><span><i class="sw bench"></i>Benchmark</span></div>
+        <a class="annex-link" href="#annex-youtube">YouTube data behind this choice, in the annex</a>
+      </article>
+
+      <article class="panel">
+        <div class="goal-line"><small>Instagram</small>Optimise for engagement</div>
+        <p class="reason">Engagement is Instagram's cheapest attention, and every engager joins the pool we retarget in Stage 2. Earlier goals, profile visits and Twitch link clicks, bought actions with little follow-through.</p>
+        <dl class="facts">
+          <div><dt>Round 1</dt><dd>1,841 interactions for $58.57</dd></div>
+          <div><dt>Cost</dt><dd>$0.032 per interaction (Twitch link clicks, Nov 13–15: from $0.054 each)</dd></div>
+          <div><dt>Rates</dt><dd>30.9% interaction rate, 42.7% 3-second hook rate</dd></div>
+          <div><dt>Follows</dt><dd>27 as a side effect, $2.17 each</dd></div>
+        </dl>
+        <div>
+          <div class="chart-title">Interaction rate</div>
+          <div class="mchart">
+            <div class="mrow"><span class="lab">No comment word, 2 posts</span><span class="track"><span class="fill" style="--w:100%" title="No comment word 38.9%"></span></span><span class="val">38.9%</span></div>
+            <div class="mrow"><span class="lab">With a comment word, 3 posts</span><span class="track"><span class="fill" style="--w:65.3%" title="With comment word 25.4%"></span></span><span class="val">25.4%</span></div>
+          </div>
+          <p class="chart-sub" style="margin-top:8px">96.7% of interactions were likes, and no keyword comments reached the bot, so comment-first is dropped.</p>
+        </div>
+        <a class="annex-link" href="#annex-instagram">Instagram data behind this choice, in the annex</a>
+      </article>
+    </div>
+  </section>
+
+  <section id="round1" aria-labelledby="r1-h">
+    <div class="sec-head">
+      <h2 id="r1-h">Round 1: formats sent to clusters</h2>
+      <p>Each cell is one format sent to one audience cluster, with its cost per result. YouTube tested four clusters. TikTok and Instagram each ran one broad audience.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="matrix">
+        <thead>
+          <tr>
+            <th class="sticky" scope="col">Format</th>
+            <th scope="col">YouTube<small>Cost per view, Nov 19–22</small></th>
+            <th scope="col">TikTok<small>Cost per follow, Nov 18–20</small></th>
+            <th scope="col">Instagram<small>Cost per interaction, Nov 20–22</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th class="sticky" scope="row">Stream clip</th>
+            <td><div class="cell"><span class="cl">Gamers &amp; stream fans</span><span class="cost num">$0.0174</span><span class="vid">keep talking, british accent</span></div></td>
+            <td><div class="cell"><span class="cl">US 18–44 broad<span class="tag">Lowest</span></span><span class="cost num">$0.19</span><span class="vid">has-a-room</span></div></td>
+            <td><div class="cell"><span class="cl">US 18–34 broad</span><span class="cost num">$0.029</span><span class="vid">Like a lamp</span></div></td>
+          </tr>
+          <tr>
+            <th class="sticky" scope="row">Animation</th>
+            <td><div class="cell"><span class="cl">Anime &amp; cozy<span class="tag">Lowest</span></span><span class="cost num">$0.0086</span><span class="vid">skipping class with Cheeto, giant pumpkin</span></div></td>
+            <td><span class="nt">Not tested</span></td>
+            <td><div class="cell"><span class="cl">US 18–34 broad<span class="tag">Lowest</span></span><span class="cost num">$0.020</span><span class="vid">Pie day</span></div></td>
+          </tr>
+          <tr>
+            <th class="sticky" scope="row">Crossover<small>guest character, comment word</small></th>
+            <td><span class="nt">Not tested</span></td>
+            <td><span class="nt">Not tested</span></td>
+            <td><div class="cell"><span class="cl">US 18–34 broad</span><span class="cost num">$0.030–$0.057</span><span class="vid">GTA launch day, Sonic vlog, Jeff vlog</span></div></td>
+          </tr>
+          <tr>
+            <th class="sticky" scope="row">Music</th>
+            <td>
+              <div class="cell"><span class="cl">Pop &amp; K-pop</span><span class="cost num">$0.0172</span><span class="vid">first song, out now</span></div>
+              <div class="cell"><span class="cl">VTuber + Vocaloid</span><span class="cost num">$0.0223</span><span class="vid">the call, Real Soon teaser</span></div>
+            </td>
+            <td><div class="cell"><span class="cl">US 18–44 broad</span><span class="cost num">$0.25</span><span class="vid">the call, Real Soon teaser</span></div></td>
+            <td><span class="nt">Not in round 1. Ran Nov 11–15 on profile visits.</span></td>
+          </tr>
+          <tr>
+            <th class="sticky" scope="row">Remake<small>guest IP</small></th>
+            <td><span class="nt">Not tested</span></td>
+            <td><div class="cell"><span class="cl">US 18–44 broad</span><span class="cost num">$0.25</span><span class="vid">Forbidden Friendship (HTTYD), 2 days</span></div></td>
+            <td><span class="nt">Not tested</span></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th class="sticky" scope="row">Clusters tested</th>
+            <td>4 clusters</td>
+            <td>1 broad audience</td>
+            <td>1 broad audience</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="plat">
+      <div class="plat-head"><h3>YouTube</h3><span class="meta-line">Goal: video views, target CPV $0.04. US English, phones, YouTube only.</span></div>
+      <div class="tbl-wrap">
+        <table class="wide">
+          <thead>
+            <tr>
+              <th class="sticky" scope="col">Cluster</th><th scope="col">Format</th><th scope="col">Video</th>
+              <th class="r" scope="col">Spend</th><th class="r" scope="col">Impr.</th><th class="r" scope="col">Unique reach</th><th class="r" scope="col">Views</th>
+              <th class="r" scope="col">View rate</th><th class="r" scope="col">Watched to end</th><th class="r" scope="col">Cost per view</th><th class="r" scope="col">CPM</th><th class="r" scope="col">Earned subs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="sticky" scope="row">Anime &amp; cozy</th><td>Animation</td>
+              <td>skipping class with Cheeto<span class="sub">2,327 views, $0.0081</span>giant pumpkin<span class="sub">47 views, $0.033</span></td>
+              <td class="r">$20.52</td><td class="r">2,554</td><td class="r">2,981</td><td class="r">2,374</td><td class="r">93.0%</td><td class="r">92.2%</td>
+              <td class="r barcell"><span class="bw"><span class="track"><span class="fill" style="--w:38.6%" title="$0.0086 per view"></span></span>$0.0086</span></td>
+              <td class="r">$8.03</td><td class="r">0</td>
+            </tr>
+            <tr>
+              <th class="sticky" scope="row">Pop &amp; K-pop</th><td>Music</td>
+              <td>first song<span class="sub">619 views</span>out now<span class="sub">574 views</span></td>
+              <td class="r">$20.53</td><td class="r">1,869</td><td class="r">2,222</td><td class="r">1,193</td><td class="r">63.8%</td><td class="r">63.8%</td>
+              <td class="r barcell"><span class="bw"><span class="track"><span class="fill" style="--w:77.1%" title="$0.0172 per view"></span></span>$0.0172</span></td>
+              <td class="r">$10.98</td><td class="r">0</td>
+            </tr>
+            <tr>
+              <th class="sticky" scope="row">Gamers &amp; stream fans</th><td>Stream clip</td>
+              <td>keep talking, british accent</td>
+              <td class="r">$20.53</td><td class="r">1,905</td><td class="r">2,225</td><td class="r">1,181</td><td class="r">62.0%</td><td class="r">59.8%</td>
+              <td class="r barcell"><span class="bw"><span class="track"><span class="fill" style="--w:78%" title="$0.0174 per view"></span></span>$0.0174</span></td>
+              <td class="r">$10.78</td><td class="r">0</td>
+            </tr>
+            <tr>
+              <th class="sticky" scope="row">VTuber + Vocaloid</th><td>Music (teaser)</td>
+              <td>the call, Real Soon teaser</td>
+              <td class="r">$20.00</td><td class="r">1,801</td><td class="r">1,785</td><td class="r">896</td><td class="r">49.8%</td><td class="r">47.8%</td>
+              <td class="r barcell"><span class="bw"><span class="track"><span class="fill" style="--w:100%" title="$0.0223 per view"></span></span>$0.0223</span></td>
+              <td class="r">$11.10</td><td class="r">0</td>
+            </tr>
+            <tr class="total">
+              <th class="sticky" scope="row">Total</th><td></td><td></td>
+              <td class="r">$81.57</td><td class="r">8,129</td><td class="r">9,160</td><td class="r">5,644</td><td class="r">69.4%</td><td class="r">68.3%</td>
+              <td class="r">$0.0145</td><td class="r">$10.03</td><td class="r">0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="read">
+        <li><b>Anime &amp; cozy was the cheapest cluster:</b> $0.0086 per view, 93.0% view rate, 92.2% watched to the end.</li>
+        <li>For music, Pop &amp; K-pop ($0.0172) beat VTuber + Vocaloid ($0.0223), on different videos.</li>
+        <li>In-stream view rate was 73.5% against 20.0% on Shorts. About 92% of impressions were skippable in-stream; in-feed got none.</li>
+        <li>Earned actions in total: 4 views, 9 likes, 2 playlist adds, 0 subscribers.</li>
+      </ul>
+    </div>
+
+    <div class="plat">
+      <div class="plat-head"><h3>TikTok</h3><span class="meta-line">Goal: follows. Spark ads, US 18–44 broad, TikTok placement only.</span></div>
+      <div class="tbl-wrap">
+        <table class="wide">
+          <thead>
+            <tr>
+              <th class="sticky" scope="col">Format</th><th scope="col">Video</th>
+              <th class="r" scope="col">Spend</th><th class="r" scope="col">Impr.</th><th class="r" scope="col">Reach</th><th class="r" scope="col">Freq.</th>
+              <th class="r" scope="col">6-sec view rate</th><th class="r" scope="col">100% view rate</th><th class="r" scope="col">Follow rate</th>
+              <th class="r" scope="col">Cost per follow</th><th class="r" scope="col">CPM</th><th class="r" scope="col">Profile visits</th><th class="r" scope="col">Follows</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="sticky" scope="row">Stream clip<span class="sub" style="font-weight:400">own cast only</span></th><td>has-a-room</td>
+              <td class="r">$59.98</td><td class="r">8,807</td><td class="r">7,424</td><td class="r">1.19</td><td class="r">19.0%</td><td class="r">7.1%</td><td class="r">3.53%</td>
+              <td class="r barcell"><span class="bw"><span class="track"><span class="fill" style="--w:76.5%" title="$0.19 per follow"></span></span>$0.19</span></td>
+              <td class="r">$6.81</td><td class="r">119</td><td class="r">311</td>
+            </tr>
+            <tr>
+              <th class="sticky" scope="row">Music (teaser)</th><td>the call</td>
+              <td class="r">$60.00</td><td class="r">5,423</td><td class="r">4,741</td><td class="r">1.14</td><td class="r">19.4%</td><td class="r">4.7%</td><td class="r">4.39%</td>
+              <td class="r barcell"><span class="bw"><span class="track"><span class="fill" style="--w:100%" title="$0.25 per follow"></span></span>$0.25</span></td>
+              <td class="r">$11.06</td><td class="r">65</td><td class="r">238</td>
+            </tr>
+            <tr>
+              <th class="sticky" scope="row">Remake<span class="sub" style="font-weight:400">guest IP</span></th><td>Forbidden Friendship (HTTYD)<span class="sub">2 days</span></td>
+              <td class="r">$39.69</td><td class="r">2,611</td><td class="r">2,369</td><td class="r">1.10</td><td class="r">12.0%</td><td class="r">1.1%</td><td class="r">6.09%</td>
+              <td class="r barcell"><span class="bw"><span class="track"><span class="fill" style="--w:99%" title="$0.25 per follow"></span></span>$0.25</span></td>
+              <td class="r">$15.20</td><td class="r">23</td><td class="r">159</td>
+            </tr>
+            <tr class="total">
+              <th class="sticky" scope="row">Total</th><td></td>
+              <td class="r">$159.67</td><td class="r">16,841</td><td class="r">11,516</td><td class="r">1.46</td><td class="r">18.1%</td><td class="r">5.4%</td><td class="r">4.20%</td>
+              <td class="r">$0.23</td><td class="r">$9.48</td><td class="r">207</td><td class="r">708</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="read">
+        <li><b>Stream clip was cheapest at $0.19 per follow</b> and held viewers best: 52% still watching at 1 second, 17% at 6 seconds.</li>
+        <li>About half of viewers left in the first second on every ad.</li>
+        <li>The remake had the best follow rate (6.09%) on the highest CPM ($15.20).</li>
+        <li>Men 18–34 took 68% of spend and gave 72% of follows. Every top interest cost $0.24–$0.27 per follow (Games biggest, 506 follows), so interest targeting looks unlikely to move the price much. Android $0.22, iOS $0.23.</li>
+      </ul>
+    </div>
+
+    <div class="plat">
+      <div class="plat-head"><h3>Instagram</h3><span class="meta-line">Goal: engagement (maximise interactions). Existing posts, US 18–34, Reels only, $5 a day per post.</span></div>
+      <div class="tbl-wrap">
+        <table class="wide">
+          <thead>
+            <tr>
+              <th class="sticky" scope="col">Format</th><th scope="col">Post</th>
+              <th class="r" scope="col">Spend</th><th class="r" scope="col">Impr.</th><th class="r" scope="col">Reach</th>
+              <th class="r" scope="col">3-sec hook rate</th><th class="r" scope="col">ThruPlay rate</th><th class="r" scope="col">Interaction rate</th>
+              <th class="r" scope="col">Cost per interaction</th><th class="r" scope="col">CPM</th><th class="r" scope="col">Profile visits</th><th class="r" scope="col">Follows</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="sticky" scope="row">Animation<span class="sub" style="font-weight:400">own IP</span></th><td>Pie day</td>
+              <td class="r">$10.93</td><td class="r">1,340</td><td class="r">1,260</td><td class="r">50.1%</td><td class="r">23.1%</td><td class="r">41.7%</td>
+              <td class="r barcell"><span class="bw"><span class="track"><span class="fill" style="--w:34.2%" title="$0.020 per interaction"></span></span>$0.020</span></td>
+              <td class="r">$8.16</td><td class="r">11</td><td class="r">8</td>
+            </tr>
+            <tr>
+              <th class="sticky" scope="row">Stream clip</th><td>Like a lamp</td>
+              <td class="r">$10.96</td><td class="r">1,088</td><td class="r">1,029</td><td class="r">47.9%</td><td class="r">10.9%</td><td class="r">35.4%</td>
+              <td class="r barcell"><span class="bw"><span class="track"><span class="fill" style="--w:49.7%" title="$0.029 per interaction"></span></span>$0.029</span></td>
+              <td class="r">$10.07</td><td class="r">9</td><td class="r">9</td>
+            </tr>
+            <tr>
+              <th class="sticky" scope="row">Crossover<span class="sub" style="font-weight:400">comment word VICE</span></th><td>GTA launch day</td>
+              <td class="r">$12.69</td><td class="r">1,438</td><td class="r">1,386</td><td class="r">45.4%</td><td class="r">25.3%</td><td class="r">29.6%</td>
+              <td class="r barcell"><span class="bw"><span class="track"><span class="fill" style="--w:52.2%" title="$0.030 per interaction"></span></span>$0.030</span></td>
+              <td class="r">$8.82</td><td class="r">4</td><td class="r">5</td>
+            </tr>
+            <tr>
+              <th class="sticky" scope="row">Crossover<span class="sub" style="font-weight:400">comment word CHEETO</span></th><td>Sonic vlog</td>
+              <td class="r">$12.67</td><td class="r">1,066</td><td class="r">995</td><td class="r">30.6%</td><td class="r">12.5%</td><td class="r">20.7%</td>
+              <td class="r barcell"><span class="bw"><span class="track"><span class="fill" style="--w:100%" title="$0.057 per interaction"></span></span>$0.057</span></td>
+              <td class="r">$11.89</td><td class="r">10</td><td class="r">5</td>
+            </tr>
+            <tr>
+              <th class="sticky" scope="row">Crossover<span class="sub" style="font-weight:400">comment word DISCO</span></th><td>Jeff vlog</td>
+              <td class="r">$11.32</td><td class="r">1,032</td><td class="r">961</td><td class="r">36.2%</td><td class="r">11.1%</td><td class="r">24.3%</td>
+              <td class="r barcell"><span class="bw"><span class="track"><span class="fill" style="--w:78.7%" title="$0.045 per interaction"></span></span>$0.045</span></td>
+              <td class="r">$10.97</td><td class="r">15</td><td class="r">0</td>
+            </tr>
+            <tr class="total">
+              <th class="sticky" scope="row">Total</th><td></td>
+              <td class="r">$58.57</td><td class="r">5,964</td><td class="r">4,774</td><td class="r">42.7%</td><td class="r">17.5%</td><td class="r">30.9%</td>
+              <td class="r">$0.032</td><td class="r">$9.82</td><td class="r">49</td><td class="r">27<span class="sub">$2.17 each</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="read">
+        <li><b>Animation (Pie day) was cheapest:</b> $0.020 per interaction, 41.7% interaction rate, 50.1% hook rate.</li>
+        <li>Posts without a comment word did better: 38.9% against 25.4% interaction rate, 17 against 10 follows.</li>
+        <li>Frequency was 1.25: almost everyone saw one post once.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="capture" aria-labelledby="cap-h">
+    <div class="sec-head">
+      <h2 id="cap-h">Audience capture</h2>
+      <p>Stage 2 needs pools of people who already saw Juniper, split by cluster and format. YouTube has them, so it moves to Stage 2 this week. TikTok and Instagram are at ground zero on clusters, and this week's niche run builds their first niche pools.</p>
+    </div>
+
+    <div class="capture">
+      <article class="panel">
+        <div><h3>YouTube</h3><span class="status good"><i class="dot good"></i>Captured per cluster, growing</span></div>
+        <table class="pools">
+          <tbody>
+            <tr><td>Any Juniper video</td><td class="r">16,000</td></tr>
+            <tr><td>Real Soon teaser viewers</td><td class="r">2,600</td></tr>
+            <tr><td>Ad viewers</td><td class="r">1,200</td></tr>
+            <tr><td>Stream-clip viewers (14 clips)</td><td class="r">660</td></tr>
+            <tr><td>Likers</td><td class="r">560</td></tr>
+            <tr><td>Subscribers, to exclude</td><td class="r">100</td></tr>
+          </tbody>
+        </table>
+        <p class="small">New on Nov 23 and filling: an animation list (29 videos), a music list, and last week's ad viewers split by format (stream, animation, music). Lists fill from the past 30 days, so round 1 viewers are in.</p>
+      </article>
+
+      <article class="panel">
+        <div><h3>TikTok</h3><span class="status warn"><i class="dot warn"></i>Ground zero on clusters, building now</span></div>
+        <table class="pools">
+          <tbody>
+            <tr><td>6-second viewers, all 3 ads mixed</td><td class="r">2,520</td></tr>
+            <tr><td>Per-ad pools, created Nov 23</td><td class="r">Filling</td></tr>
+          </tbody>
+        </table>
+        <p class="small">Round 1 ran one broad audience, so there is no cluster comparison yet. TikTok needs 1,000 people in a pool before it can target it. Each niche ad group this week leaves its own pool. Last week's report shows which niches the follows came from, but those people aren't a pool.</p>
+      </article>
+
+      <article class="panel">
+        <div><h3>Instagram</h3><span class="status warn"><i class="dot warn"></i>Ground zero on clusters, building now</span></div>
+        <table class="pools">
+          <tbody>
+            <tr><td>Ad-video viewers, 3 seconds</td><td class="r">2,200–2,500</td></tr>
+            <tr><td>juniper.pi engagers</td><td class="r">6,400–7,600</td></tr>
+            <tr><td>Each per-format pool</td><td class="r">Under 1,000</td></tr>
+          </tbody>
+        </table>
+        <p class="small">Round 1 ran one broad US 18–34 audience, and audiences were only created on Nov 23, after the run. Meta back-filled them from past viewers. Each niche ad set this week leaves its own viewers and engagers.</p>
+      </article>
+    </div>
+
+    <div class="panel freq">
+      <div>
+        <div class="chart-title">Almost nobody saw Juniper twice</div>
+        <div class="chart-sub">Average impressions per person in round 1. Cold clusters are huge, so the same people see Juniper again only through captured pools.</div>
+      </div>
+      <div class="strip" role="img" aria-label="Frequency: YouTube 1.0, Instagram 1.25, TikTok 1.46 on a scale from 1.0 to 2.0">
+        <div class="axis"></div>
+        <span class="tick first" style="left:0%">1.0</span>
+        <span class="tick" style="left:50%">1.5</span>
+        <span class="tick last" style="left:100%">2.0</span>
+        <span class="pt" style="left:0%" title="YouTube frequency 1.0"></span>
+        <span class="pt" style="left:25%" title="Instagram frequency 1.25"></span>
+        <span class="pt" style="left:46%" title="TikTok frequency 1.46"></span>
+        <span class="pl up edge" style="left:0%"><b>YouTube 1.0</b></span>
+        <span class="pl down" style="left:25%"><b>Instagram 1.25</b></span>
+        <span class="pl up" style="left:46%"><b>TikTok 1.46</b></span>
+      </div>
+      <p class="small muted">YouTube: 9,160 unique people, and only 135 saw two or more ads.</p>
+    </div>
+  </section>
+
+  <section id="niche-run" aria-labelledby="r2-h">
+    <div class="sec-head">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px"><h2 id="r2-h">This week: the niche run</h2><span class="draft" style="color:var(--good-ink)"><i class="dot good"></i>Live since Wed Nov 25</span></div>
+      <p>The same three niches on every platform. Most cells went live Wednesday morning; the music cells start Fri Nov 27 at 11 AM with the Real Soon release. Most it can spend: about $275. Setup read from each ads manager on Wed Nov 25.</p>
+    </div>
+
+    <div class="newvids">
+      <div><span class="small muted">Gaming (stream clip)</span><b>cat-rage-quit</b><span class="small muted">YouTube and Instagram. TikTok runs no-sound, its best organic stream clip</span></div>
+      <div><span class="small muted">Anime &amp; animation</span><b>song-says-your-name</b><span class="small muted">All three</span></div>
+      <div><span class="small muted">Music &amp; VTuber</span><b>Real Soon release</b><span class="small muted">Fri Nov 27, 11 AM, all three</span></div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="mid">
+        <thead>
+          <tr><th class="sticky" scope="col">Platform</th><th scope="col">Live now</th><th class="r" scope="col">Daily now</th><th scope="col">Runs</th><th scope="col">Added Friday</th><th class="r" scope="col">Most it can spend</th></tr>
+        </thead>
+        <tbody>
+          <tr><th class="sticky" scope="row">YouTube</th><td>4 campaigns: 2 cold, 2 Stage 2 retarget</td><td class="r">$20</td><td>Wed 25 – Fri 27</td><td>3 music campaigns, $5 each</td><td class="r">$75</td></tr>
+          <tr><th class="sticky" scope="row">TikTok</th><td>2 ad groups</td><td class="r">$40</td><td>Wed 25 – Thu 26 (2 days)</td><td>1 music ad group, $20 (built Friday)</td><td class="r">$100</td></tr>
+          <tr><th class="sticky" scope="row">Instagram</th><td>4 ad sets: 2 niche, 2 broad controls</td><td class="r">$20</td><td>Wed 25 – Fri 27</td><td>2 music ad sets, $5 each. Click-to-Instagram-Direct $10 a day once its video lands</td><td class="r">$100</td></tr>
+          <tr class="total"><th class="sticky" scope="row">Total</th><td>10 cells live</td><td class="r">$80</td><td></td><td></td><td class="r">About $275</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="matrix run">
+        <thead>
+          <tr>
+            <th class="sticky" scope="col">Niche</th>
+            <th scope="col">YouTube<small>Stage 2 retarget + cold, goal: views, target $0.04 per view</small></th>
+            <th scope="col">TikTok<small>Stage 1 niche ad groups, goal: follows</small></th>
+            <th scope="col">Instagram<small>Stage 1 niche + broad control, goal: engagement</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th class="sticky" scope="row">Gaming<small>Wed 25 – Fri 27 (TikTok to Thu 26)</small></th>
+            <td>
+              <div class="cell"><span class="tag lead">Stage 2 retarget</span><span class="tgt">Stream ad viewers + stream-clip viewers (1,300). cat-rage-quit</span><span class="cost num">$15</span><span class="vid">$5 a day × 3 days. Live</span></div>
+              <div class="cell"><span class="tag lead plain">Cold</span><span class="tgt">Gamers &amp; stream fans, past ad viewers excluded. cat-rage-quit</span><span class="cost num">$15</span><span class="vid">$5 a day × 3 days. Live</span></div>
+            </td>
+            <td><div class="cell"><span class="tgt">Video Games watchers and game-creator followers (46–56M). no-sound</span><span class="cost num">$40</span><span class="vid">$20 a day × 2 days. Live</span></div></td>
+            <td><div class="cell"><span class="tgt">Video games, Gamer, PC game and Twitch interests (18–21M), next to a broad US 18–34 control. cat-rage-quit</span><span class="cost num">$30</span><span class="vid">2 ad sets × $5 a day × 3 days. Live</span></div></td>
+          </tr>
+          <tr>
+            <th class="sticky" scope="row">Anime &amp; animation<small>Wed 25 – Fri 27 (TikTok to Thu 26)</small></th>
+            <td>
+              <div class="cell"><span class="tag lead">Stage 2 retarget</span><span class="tgt">Animation ad viewers + animations list (9,600). song-says-your-name</span><span class="cost num">$15</span><span class="vid">$5 a day × 3 days. Live</span></div>
+              <div class="cell"><span class="tag lead plain">Cold</span><span class="tgt">Anime &amp; cozy, past ad viewers excluded. song-says-your-name</span><span class="cost num">$15</span><span class="vid">$5 a day × 3 days. Live</span></div>
+            </td>
+            <td><div class="cell"><span class="tgt">Anime &amp; Comics watchers and Comic &amp; Cartoon creator followers (35–43M). song-says-your-name</span><span class="cost num">$40</span><span class="vid">$20 a day × 2 days. Live</span></div></td>
+            <td><div class="cell"><span class="tgt">Manga, Anime and manga fandom, Crunchyroll and Animation interests (6–7M), next to a broad control. song-says-your-name</span><span class="cost num">$30</span><span class="vid">2 ad sets × $5 a day × 3 days. Live</span></div></td>
+          </tr>
+          <tr>
+            <th class="sticky" scope="row">Music &amp; VTuber<small>Fri 27 only, from the 11 AM release</small></th>
+            <td>
+              <div class="cell"><span class="tag lead">Stage 2 retarget</span><span class="tgt">Music ad viewers + teaser viewers (2,800) + music list (1,100)</span><span class="cost num">$5</span><span class="vid">Built, waiting on the Real Soon video</span></div>
+              <div class="cell"><span class="tag lead plain">Cold</span><span class="tgt">Pop &amp; K-pop ($5) and VTuber + Vocaloid ($5), past ad viewers excluded</span><span class="cost num">$10</span><span class="vid">Built, waiting on the Real Soon video</span></div>
+            </td>
+            <td><div class="cell"><span class="tgt">VTuber creator followers, Music and Singing &amp; Dancing watchers. Real Soon, song only</span><span class="cost num">$20</span><span class="vid">Built Friday once Real Soon is posted</span></div></td>
+            <td><div class="cell"><span class="tgt">K-pop, J-pop and Korean pop idol interests (3.9–4.6M), next to a broad control. Meta has no VTuber or Vocaloid interest</span><span class="cost num">$10</span><span class="vid">2 ad sets × $5, Friday. Built, waiting on the post</span></div></td>
+          </tr>
+          <tr>
+            <th class="sticky" scope="row">Click-to-Instagram-Direct<small>Stage 1 (alt), cold</small></th>
+            <td><span class="nt">Not run</span></td>
+            <td><span class="nt">Not run</span></td>
+            <td><div class="cell"><span class="tgt">US 18–34, all 12 Juniper pools excluded. Goal: conversations, DMs to juniper.pi</span><span class="cost num">$10 a day</span><span class="vid">Built, starts when its video is ready</span></div></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th class="sticky" scope="row">Most it can spend</th>
+            <td class="num">$75</td>
+            <td class="num">$100</td>
+            <td class="num">$100</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <ul class="opts">
+      <li><b>Stage 2 on YouTube:</b> each retarget cell runs next to a cold cell with the same video, so a second exposure reads directly against a first. The cold cells exclude everyone who has seen an ad (1,400 people). The subscriber exclusion isn't active yet: the list is at 80 and needs 100.</li>
+      <li><b>Pools this run leaves:</b> YouTube "viewed as ad" lists for cat-rage-quit and song-says-your-name; TikTok 6-second viewer audiences for both ad groups; Instagram's stream-clip and animation video audiences now include both posts.</li>
+      <li><b>First hours, Wed about 1 PM ET (too early to judge):</b> TikTok anime 21 follows on $1.87, gaming 2 follows on $0.01. Instagram 55 interactions on $1.70, $0.03 each.</li>
+      <li><b>Settings carried from round 1.</b> YouTube: YouTube only, phones, US English. TikTok: Follows Spark ads, US 18–44, TikTok placement only, Smart interests and Music refresh off. Instagram: interactions on existing posts, US 18–34 firm, Reels only, Advantage+ audience off.</li>
+      <li><b>Read on Mon Nov 30,</b> per niche: reach, cost per result, CPM, view or hook rate, completion, follows and the pool left behind. Instagram compares each niche with its broad control; TikTok compares with round 1's broad $0.23 per follow; YouTube compares retarget with cold.</li>
+      <li><b>Friday:</b> the music cells start with the Real Soon release at 11 AM.</li>
+    </ul>
+  </section>
+
+  <section id="niches" aria-labelledby="caps-h">
+    <div class="sec-head">
+      <h2 id="caps-h">What each platform can do for niches</h2>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="mid caps">
+        <thead>
+          <tr><th class="sticky" scope="col"></th><th scope="col">YouTube</th><th scope="col">TikTok</th><th scope="col">Instagram</th></tr>
+        </thead>
+        <tbody>
+          <tr><th class="sticky" scope="row">How a niche is targeted</th><td>Custom segments from our search terms, Google's interest groups, viewer lists</td><td>Interests, video interactions (watched to the end or liked a category's videos in the last 7 or 15 days), creator interactions (follow or visit creators in a category)</td><td>Detailed targeting by interests and behaviours, firm only with Advantage+ audience off</td></tr>
+          <tr><th class="sticky" scope="row">Niches available</th><td>Gamers, Anime &amp; cozy, Pop &amp; K-pop, VTuber + Vocaloid (built)</td><td>Games, Video Games, Anime &amp; Comics, Comic &amp; Cartoon, Vtuber, Music, Singing &amp; Dancing (all in last week's export)</td><td>Video games and anime are standard; K-pop, Vocaloid and VTuber to confirm at build</td></tr>
+          <tr><th class="sticky" scope="row">Smallest cell</th><td class="num">About $5 a day</td><td class="num">$20 a day per ad group</td><td class="num">About $5 a day ($1 minimum)</td></tr>
+          <tr><th class="sticky" scope="row">Read per niche</th><td>Views, view rate, cost per view, reach, completion; delivery per segment</td><td>Follows, cost per follow, 6-second views, completion, profile visits; age, gender, device and interest splits</td><td>Interactions and rate, cost per interaction, reach, follows, hook rate; age, gender and placement splits</td></tr>
+          <tr><th class="sticky" scope="row">Pool it leaves</th><td>A "viewed as ad" list per video, filling from the last 30 days</td><td>6-second viewers per ad group; 1,000 needed to target</td><td>Video viewers per post and engagers; about 100 needed</td></tr>
+          <tr><th class="sticky" scope="row">Watch out for</th><td>In round 1, Google's broad segments took most delivery. The per-segment report shows it</td><td>Categories overlap heavily: the same people sit in VTuber, game and anime groups</td><td>Meta may not list VTuber or Vocaloid as interests</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <div>
+        <div class="chart-title">TikTok's broad run already drifted into these niches</div>
+        <div class="chart-sub">Round 1 follows from each niche, out of 708. The groups overlap, so they add up to more than 708. Every niche cost $0.22–$0.27 per follow.</div>
+      </div>
+      <div class="mchart">
+        <div class="mrow"><span class="lab">Game-creator followers</span><span class="track"><span class="fill" style="--w:70.1%" title="496 of 708 follows"></span></span><span class="val">496</span></div>
+        <div class="mrow"><span class="lab">VTuber-creator followers</span><span class="track"><span class="fill" style="--w:68.5%" title="485 of 708 follows"></span></span><span class="val">485</span></div>
+        <div class="mrow"><span class="lab">Anime &amp; Comics watchers</span><span class="track"><span class="fill" style="--w:42.4%" title="About 300 of 708 follows"></span></span><span class="val">~300</span></div>
+      </div>
+      <p class="small muted">Full track = all 708 round 1 follows. Read from TikTok's report breakdown by behaviour (which creators and videos the people reached had followed or watched). It is a report, not an audience: these people aren't in a pool we can retarget.</p>
+    </div>
+  </section>
+
+  <section id="notes" class="notes" aria-labelledby="notes-h">
+    <h2 id="notes-h">Notes</h2>
+    <ul>
+      <li><b>Small samples.</b> $5–$20 a day per cell buys hundreds to a few thousand impressions. Read every cell as directional.</li>
+      <li><b>YouTube clusters are muddied.</b> Each cluster saw a different video, and Google's broad segments carried most delivery: Anime 2,240 impressions from "Comics &amp; Animation" against 314 from our anime terms; Pop 1,195 against 674; Gamers 1,765 against 140; the teaser 1,691 from Vocaloid terms against 110 from VTuber terms. A cleaner test sends one video to every cluster.</li>
+      <li><b>YouTube unique reach covers Nov 19–23,</b> including part of Nov 23 while three campaigns kept running, so it can exceed the round 1 impressions.</li>
+      <li><b>Rates are per impression.</b> YouTube view rate is views ÷ impressions (Google's own in-stream view rate was 73.5%). TikTok's 6-second and 100% view rates and Instagram's hook and ThruPlay rates are also ÷ impressions.</li>
+      <li><b>Holiday week.</b> Thu Nov 26 is Thanksgiving and Fri is Black Friday, so costs rise. Compare cells on the same days. Real Soon releases Fri Nov 27 at 11 AM.</li>
+      <li><b>Time zones.</b> Meta reports in Pacific time; TikTok and Google in Eastern.</li>
+    </ul>
+  </section>
+
+  <section id="annex" class="annex" aria-labelledby="annex-h">
+    <div class="sec-head">
+      <h2 id="annex-h">Annex 1: why each platform's goal</h2>
+      <p>The product model is retention. A follow is a person who keeps seeing Juniper; a view is a single exposure. So a goal wins when it buys retained people cheaply, not just cheap impressions.</p>
+    </div>
+
+    <div class="tbl-wrap">
+      <table class="across">
+        <thead><tr><th class="sticky" scope="col">Round 1</th><th class="r" scope="col">TikTok</th><th class="r" scope="col">Instagram</th><th class="r" scope="col">YouTube</th></tr></thead>
+        <tbody>
+          <tr><th class="sticky" scope="row">Goal</th><td class="r">Follows</td><td class="r">Engagement</td><td class="r">Views</td></tr>
+          <tr><th class="sticky" scope="row">CPM</th><td class="r">$9.48</td><td class="r">$9.82</td><td class="r">$10.03</td></tr>
+          <tr><th class="sticky" scope="row">Cost per follower</th><td class="r">$0.23</td><td class="r">$2.17</td><td class="r">None for $81.57</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small" style="color:var(--ink-2)">The same money buys the same impressions everywhere. Only TikTok's goal turns them into followers at scale.</p>
+
+    <div class="plat" id="annex-tiktok">
+      <div class="plat-head"><h3>TikTok: follows</h3><span class="meta-line">Buys retained people, and leaves a cheaper viewer pool than a views goal would.</span></div>
+      <div class="tbl-wrap">
+        <table class="annex-tbl">
+          <thead><tr><th class="sticky" scope="col">Goal</th><th scope="col">When</th><th scope="col">Cost</th><th scope="col">What it bought</th><th scope="col">Verdict</th></tr></thead>
+          <tbody>
+            <tr><th class="sticky" scope="row">Follows, round 1</th><td>Nov 18–20</td><td class="num">$0.23 per follow</td><td>708 follows (has-a-room $0.19, the call $0.25, HTTYD $0.25), plus 2,518 six-second viewers at about $0.06 each</td><td><span class="tag lead">Chosen</span></td></tr>
+            <tr><th class="sticky" scope="row">Follows, earlier ads</th><td>Oct 31–Nov 8</td><td class="num">$0.17–$0.29 per follow</td><td>Dance 1 broad $0.17 (349), New videos $0.19 (415), US 18–44 broad $0.20 (250), Pink One test $0.29 (70)</td><td><span class="tag lead">Held across 3 runs</span></td></tr>
+            <tr><th class="sticky" scope="row">Video views</th><td>Priced, never run</td><td class="num">$0.16 suggested bid per 6-second view</td><td>Nothing yet</td><td><span class="tag lead plain">Not chosen</span></td></tr>
+            <tr><th class="sticky" scope="row">Twitch link clicks</th><td>Nov 14–15</td><td class="num">$70.44 spent</td><td>Clicks with almost no outcome</td><td><span class="tag lead plain">Dropped</span></td></tr>
+            <tr><th class="sticky" scope="row">Traffic and song clicks</th><td>Earlier</td><td class="num">Cheap clicks</td><td>Almost no outcome; traffic leaked to Pangle</td><td><span class="tag lead plain">Dropped</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="panel">
+        <div>
+          <div class="chart-title">Cost per 6-second viewer</div>
+          <div class="chart-sub">The Follows ads produced six-second viewers as a by-product, on top of 708 follows.</div>
+        </div>
+        <div class="mchart">
+          <div class="mrow"><span class="lab">Follows goal, by-product</span><span class="track"><span class="fill" style="--w:39.6%" title="About $0.063 per 6-second viewer"></span></span><span class="val">$0.063</span></div>
+          <div class="mrow"><span class="lab">Views goal, suggested bid</span><span class="track"><span class="fill bench" style="--w:100%" title="TikTok's suggested bid $0.16 per 6-second view"></span></span><span class="val">$0.16</span></div>
+        </div>
+        <div class="legend"><span><i class="sw"></i>Round 1 result</span><span><i class="sw bench"></i>Priced, not run</span></div>
+      </div>
+      <ul class="read">
+        <li><b>Retention check:</b> TikTok Studio showed 827 net new followers in the 7 days to Nov 23, against 708 paid. The paid follows appear to have stuck, at about $0.19 per net new follower.</li>
+      </ul>
+    </div>
+
+    <div class="plat" id="annex-youtube">
+      <div class="plat-head"><h3>YouTube: views</h3><span class="meta-line">The cheapest way to fill the viewer lists that Stage 2 retargets.</span></div>
+      <div class="tbl-wrap">
+        <table class="annex-tbl">
+          <thead><tr><th class="sticky" scope="col">Goal</th><th scope="col">When</th><th scope="col">Cost</th><th scope="col">What it bought</th><th scope="col">Verdict</th></tr></thead>
+          <tbody>
+            <tr><th class="sticky" scope="row">Views, round 1</th><td>Nov 19–22</td><td class="num">$0.0145 per view, against a $0.04 cap</td><td>5,644 views, 9,160 people, 0 earned subscribers</td><td><span class="tag lead">Chosen</span></td></tr>
+            <tr><th class="sticky" scope="row">Views, music video test</th><td>Nov 11–15</td><td class="num">$0.029 per view ($29.93)</td><td>1,019 views, 0 net subscribers</td><td><span class="tag lead plain">Earlier result</span></td></tr>
+            <tr><th class="sticky" scope="row">Subscribers</th><td>Not tested</td><td class="num">Unknown</td><td>No goal has bought subscribers yet</td><td><span class="tag lead plain">Not tested</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="read">
+        <li><b>Why views still win for reach:</b> they fill YouTube's viewer lists cheaply. Any-video viewers 16,000, teaser viewers 2,600, ad viewers 1,200.</li>
+        <li>Those lists are what make this week's Stage 2 retargeting cells possible.</li>
+      </ul>
+    </div>
+
+    <div class="plat" id="annex-instagram">
+      <div class="plat-head"><h3>Instagram: engagement</h3><span class="meta-line">The cheapest attention on Instagram, and it fills the engager pool we retarget.</span></div>
+      <div class="tbl-wrap">
+        <table class="annex-tbl">
+          <thead><tr><th class="sticky" scope="col">Goal</th><th scope="col">When</th><th scope="col">Cost</th><th scope="col">What it bought</th><th scope="col">Verdict</th></tr></thead>
+          <tbody>
+            <tr><th class="sticky" scope="row">Engagement, round 1</th><td>Nov 20–22</td><td class="num">$0.032 per interaction, CPM $9.82</td><td>1,841 interactions; 27 follows at $2.17 each as a side effect</td><td><span class="tag lead">Chosen</span></td></tr>
+            <tr><th class="sticky" scope="row">Engagement, no comment ask</th><td>Nov 20–22</td><td class="num">From $0.020 per interaction (Pie day)</td><td>41.7% interaction rate on Pie day; posts without a comment word 38.9% against 25.4%</td><td><span class="tag lead">Best version</span></td></tr>
+            <tr><th class="sticky" scope="row">Comment-first</th><td>Nov 20–22</td><td class="num">$36.68 on 3 posts</td><td>0 keyword comments reached the bot</td><td><span class="tag lead plain">Dropped</span></td></tr>
+            <tr><th class="sticky" scope="row">Twitch link clicks</th><td>Nov 13–15</td><td class="num">From $0.054 per click (cheapest ad)</td><td>Cheap clicks, little follow-through</td><td><span class="tag lead plain">Dropped</span></td></tr>
+            <tr><th class="sticky" scope="row">Profile visits</th><td>Nov 11–15</td><td class="num">Cheap visits</td><td>Little follow-through</td><td><span class="tag lead plain">Dropped</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="read">
+        <li><b>Retargeting pool:</b> juniper.pi's engager audience is 6,400–7,600 people (all sources, past 365 days). Engagement ads keep adding to it.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="annex-untested" class="annex" aria-labelledby="untested-h">
+    <div class="sec-head">
+      <h2 id="untested-h">Annex 2: setups we haven't tested yet</h2>
+      <p>Ad setups and goals each platform offers that we haven't run, sorted by what they serve: account growth (new followers and subscribers) or retention (the same people seeing Juniper again). From a quick read of each platform's documentation on Nov 24. The docs say how a setup works, not how well it does for an account like ours, so each one needs a small test.</p>
+    </div>
+
+    <div class="panel" style="max-width:none">
+      <div class="chart-title">Strongest candidates</div>
+      <ul class="picks">
+        <li><b>A subscriber goal on YouTube.</b> YouTube Promote ("audience growth") and Demand Gen ("YouTube engagements") both optimise for subscriptions. It is the one gap in our data: views have bought 0 subscribers so far. A small test answers it.</li>
+        <li><b>Lookalikes from our own pools.</b> All three platforms can find new people who resemble the people who already engaged. Ready on YouTube and Instagram now; TikTok once its per-ad pools fill.</li>
+        <li><b>A video ad sequence on YouTube for Stage 2.</b> Shows the same person a set series in order (for example stream clip, then animation, then Real Soon). It is repetition by design, which is what Stage 2 is for.</li>
+      </ul>
+    </div>
+
+    <div class="plat">
+      <div class="plat-head"><h3>TikTok</h3></div>
+      <div class="tbl-wrap">
+        <table class="untested-tbl">
+          <thead><tr><th class="sticky" scope="col">Setup</th><th scope="col">What it does</th><th scope="col">Serves</th><th scope="col">Status for us</th><th scope="col">Doc</th></tr></thead>
+          <tbody>
+            <tr><th class="sticky" scope="row">Lookalike of our engagement pools</th><td>Finds new people similar to our 6-second viewers or engagers</td><td>Growth</td><td><span class="tag lead plain">Needs a pool</span><span class="sub">Per-ad pools are filling</span></td><td><a class="doc" href="https://ads.tiktok.com/help/article/create-lookalike-audience">TikTok help</a></td></tr>
+            <tr><th class="sticky" scope="row">Business Account Audiences</th><td>Retarget followers, profile visitors and organic viewers from the last 7 to 30 days</td><td>Retention</td><td><span class="tag lead plain">Blocked</span><span class="sub">juniper.pi is a Personal account</span></td><td><a class="doc" href="https://ads.tiktok.com/resources/help/article/how-to-create-a-business-account-audience-in-tiktok-ads-manager">TikTok help</a></td></tr>
+            <tr><th class="sticky" scope="row">Views goal (6-second view)</th><td>Buys reach by the view; TikTok suggested $0.16 per 6-second view</td><td>Growth (reach)</td><td><span class="tag lead plain">Not tested</span></td><td><a class="annex-link" href="#annex-tiktok">Annex 1</a></td></tr>
+            <tr><th class="sticky" scope="row">Countdown sticker</th><td>Adds a timer to the ad counting down to a date, such as the Real Soon release</td><td>Engagement</td><td><span class="tag lead plain">Check goal</span><span class="sub">Documented for reach, traffic, views and conversion goals; not confirmed for Follows</span></td><td><a class="doc" href="https://ads.tiktok.com/help/article/interactive-add-on-create-ad-countdown-sticker">TikTok help</a></td></tr>
+            <tr><th class="sticky" scope="row">Page visits to a playlist</th><td>Sends viewers to a Juniper playlist page instead of a single post, so they binge</td><td>Retention</td><td><span class="tag lead plain">Beta</span><span class="sub">Playlist pages need allowlisting</span></td><td><a class="doc" href="https://ads.tiktok.com/help/article/community-interaction-objective">TikTok help</a></td></tr>
+            <tr><th class="sticky" scope="row">Creator Spark ads</th><td>Promotes a creator's post that features Juniper, with their authorisation code</td><td>Growth</td><td><span class="tag lead plain">Needs a collab</span></td><td></td></tr>
+            <tr><th class="sticky" scope="row">Reach &amp; Frequency</th><td>Reserved reach with a set number of exposures per person</td><td>Retention</td><td><span class="tag lead plain">Not at our scale</span><span class="sub">About 100,000 reach per order (third-party figure); via a sales rep</span></td><td><a class="doc" href="https://ads.tiktok.com/help/article/reach-frequency-ad-buying-type">TikTok help</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="plat">
+      <div class="plat-head"><h3>YouTube</h3></div>
+      <div class="tbl-wrap">
+        <table class="untested-tbl">
+          <thead><tr><th class="sticky" scope="col">Setup</th><th scope="col">What it does</th><th scope="col">Serves</th><th scope="col">Status for us</th><th scope="col">Doc</th></tr></thead>
+          <tbody>
+            <tr><th class="sticky" scope="row">YouTube Promote, audience growth</th><td>A Studio campaign aimed at people likely to subscribe. Counts a subscriber within 3 days of a 10-second view or a click. From $5</td><td>Growth</td><td><span class="tag lead">Ready</span><span class="sub">Promote subscribers don't count toward the Partner Program</span></td><td><a class="doc" href="https://support.google.com/youtube/answer/12199105">YouTube help</a></td></tr>
+            <tr><th class="sticky" scope="row">Demand Gen, YouTube engagements</th><td>Optimises for subscriptions or follow-on views, by max conversions or a target cost. YouTube only</td><td>Growth</td><td><span class="tag lead">Ready</span><span class="sub">Can target our viewer lists</span></td><td><a class="doc" href="https://support.google.com/google-ads/answer/12301500">Google help</a></td></tr>
+            <tr><th class="sticky" scope="row">Lookalike segments</th><td>New people similar to our viewer lists, at narrow, balanced or broad reach. Demand Gen only</td><td>Growth</td><td><span class="tag lead">Ready</span><span class="sub">Lists are big enough</span></td><td><a class="doc" href="https://support.google.com/google-ads/answer/16902001">Google help</a></td></tr>
+            <tr><th class="sticky" scope="row">Video ad sequence</th><td>Shows a set series of videos in order to the same person, one sequence per 7 or 30 days</td><td>Retention</td><td><span class="tag lead">Fits Stage 2</span></td><td><a class="doc" href="https://support.google.com/google-ads/answer/9161595">Google help</a></td></tr>
+            <tr><th class="sticky" scope="row">Target frequency</th><td>A reach campaign aimed at 2 to 4 views per person per week. Run 7 days or more</td><td>Retention</td><td><span class="tag lead plain">Fits Stage 2</span><span class="sub">Paid by impressions, not views</span></td><td><a class="doc" href="https://support.google.com/google-ads/answer/12400225">Google help</a></td></tr>
+            <tr><th class="sticky" scope="row">Mobile against computer</th><td>Grant's suggestion: computer viewers subscribed more in his past data. We run phones only</td><td>Growth</td><td><span class="tag lead plain">Proposed</span><span class="sub">Under $15</span></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="plat">
+      <div class="plat-head"><h3>Instagram</h3><span class="meta-line">Meta has no goal that optimises for follows; follows are a reporting column only (<a class="doc" href="https://www.jonloomer.com/qvt/instagram-follows/">third-party write-up</a>).</span></div>
+      <div class="tbl-wrap">
+        <table class="untested-tbl">
+          <thead><tr><th class="sticky" scope="col">Setup</th><th scope="col">What it does</th><th scope="col">Serves</th><th scope="col">Status for us</th><th scope="col">Doc</th></tr></thead>
+          <tbody>
+            <tr><th class="sticky" scope="row">Lookalike of juniper.pi engagers</th><td>New people similar to our 6,400–7,600 engagers. A seed needs about 100 people in one country</td><td>Growth</td><td><span class="tag lead">Ready</span></td><td><a class="doc" href="https://developers.facebook.com/documentation/ads-commerce/marketing-api/audiences/guides/lookalike-audiences">Meta docs</a></td></tr>
+            <tr><th class="sticky" scope="row">Partnership ads</th><td>The ad runs from Juniper's and a creator's handles and reaches beyond both follower bases. No licensed music</td><td>Growth</td><td><span class="tag lead plain">Needs a collab</span></td><td><a class="doc" href="https://creators.instagram.com/earn-money/partnership-ads">Instagram</a></td></tr>
+            <tr><th class="sticky" scope="row">Trial Reels</th><td>Free and organic: a reel goes to non-followers first, with insights within 24 hours. Promote only the winners</td><td>Growth (test)</td><td><span class="tag lead">Ready, $0</span></td><td><a class="doc" href="https://creators.instagram.com/blog/instagram-trial-reels">Instagram</a></td></tr>
+            <tr><th class="sticky" scope="row">Click-to-Instagram-Direct</th><td>Opens a DM with Juniper and builds a pool of people who messaged</td><td>Retention</td><td><span class="tag lead plain">Planned</span><span class="sub">Starts when the DM-first video lands</span></td><td></td></tr>
+            <tr><th class="sticky" scope="row">Engager retargeting</th><td>New Reels in the same format to people who engaged before (Stage 2 on Instagram)</td><td>Retention</td><td><span class="tag lead plain">Needs a pool</span><span class="sub">Per-format pools are under 1,000</span></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <footer>Data read from each platform's ads manager. Updated after each run.</footer>
+</main>
+
+</body>
+</html>
