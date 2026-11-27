@@ -137,6 +137,10 @@ section { display: grid; gap: 20px; min-width: 0; }
 .cert { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; white-space: nowrap; }
 .cert.sure { color: var(--good-ink); }
 .cert.dep { color: var(--warn-ink); }
+.vs3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.vs3 .mrow { grid-template-columns: minmax(0, 7rem) minmax(0, 1fr) 3.8rem; }
+.plat-head .tag.lead { margin-bottom: 0; }
+@media (max-width: 900px) { .vs3 { grid-template-columns: 1fr; } }
 .d1 { min-width: 680px; }
 .d1 th, .d1 td { padding: 7px 10px; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -275,7 +279,7 @@ footer { font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--lin
       <div><b>TikTok</b><span class="big num">708 follows</span><span class="small muted num">$159.67, $0.23 per follow</span></div>
       <div><b>Instagram</b><span class="big num">1,841 interactions</span><span class="small muted num">$58.57, $0.032 per interaction</span></div>
     </div>
-    <p class="meta">Round 1 read in each ads manager on Mon Nov 23. This week's setup read Wed Nov 25. All times US Eastern.</p>
+    <p class="meta">Round 1 read in each ads manager on Mon Nov 23. This week's setup read Wed Nov 25; round 2 results read Fri Nov 27. All times US Eastern.</p>
   </header>
 
   <section id="stages" aria-labelledby="stages-h">
@@ -719,7 +723,7 @@ footer { font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--lin
 
   <section id="niche-run" aria-labelledby="r2-h">
     <div class="sec-head">
-      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px"><h2 id="r2-h">This week: the niche run</h2><span class="draft" style="color:var(--good-ink)"><i class="dot good"></i>Live since Wed Nov 25</span></div>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px"><h2 id="r2-h">This week: the niche run</h2><span class="draft" style="color:var(--good-ink)"><i class="dot good"></i>Live since Wed Nov 25. TikTok ended Thu; YouTube and Instagram end tonight</span></div>
       <p>The same three niches on every platform. Most cells went live Wednesday morning; the music cells start Fri Nov 27 at 11 AM with the Real Soon release. Most it can spend: about $275. Setup read from each ads manager on Wed Nov 25.</p>
     </div>
 
@@ -760,7 +764,7 @@ footer { font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--lin
               <div class="cell"><span class="tag lead">Stage 2 retarget</span><span class="tgt">Stream ad viewers + stream-clip viewers (1,300). cat-rage-quit</span><span class="cost num">$15</span><span class="vid">$5 a day × 3 days. Live</span></div>
               <div class="cell"><span class="tag lead plain">Cold</span><span class="tgt">Gamers &amp; stream fans, past ad viewers excluded. cat-rage-quit</span><span class="cost num">$15</span><span class="vid">$5 a day × 3 days. Live</span></div>
             </td>
-            <td><div class="cell"><span class="tgt">Video Games watchers and game-creator followers (46–56M). no-sound</span><span class="cost num">$40</span><span class="vid">$20 a day × 2 days. Live</span></div></td>
+            <td><div class="cell"><span class="tgt">Video Games watchers and game-creator followers (46–56M). no-sound</span><span class="cost num">$40</span><span class="vid">$20 a day × 2 days. Ended Thu</span></div></td>
             <td><div class="cell"><span class="tgt">Video games, Gamer, PC game and Twitch interests (18–21M), next to a broad US 18–34 control. cat-rage-quit</span><span class="cost num">$30</span><span class="vid">2 ad sets × $5 a day × 3 days. Live</span></div></td>
           </tr>
           <tr>
@@ -769,7 +773,7 @@ footer { font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--lin
               <div class="cell"><span class="tag lead">Stage 2 retarget</span><span class="tgt">Animation ad viewers + animations list (9,600). song-says-your-name</span><span class="cost num">$15</span><span class="vid">$5 a day × 3 days. Live</span></div>
               <div class="cell"><span class="tag lead plain">Cold</span><span class="tgt">Anime &amp; cozy, past ad viewers excluded. song-says-your-name</span><span class="cost num">$15</span><span class="vid">$5 a day × 3 days. Live</span></div>
             </td>
-            <td><div class="cell"><span class="tgt">Anime &amp; Comics watchers and Comic &amp; Cartoon creator followers (35–43M). song-says-your-name</span><span class="cost num">$40</span><span class="vid">$20 a day × 2 days. Live</span></div></td>
+            <td><div class="cell"><span class="tgt">Anime &amp; Comics watchers and Comic &amp; Cartoon creator followers (35–43M). song-says-your-name</span><span class="cost num">$40</span><span class="vid">$20 a day × 2 days. Ended Thu</span></div></td>
             <td><div class="cell"><span class="tgt">Manga, Anime and manga fandom, Crunchyroll and Animation interests (6–7M), next to a broad control. song-says-your-name</span><span class="cost num">$30</span><span class="vid">2 ad sets × $5 a day × 3 days. Live</span></div></td>
           </tr>
           <tr>
@@ -802,7 +806,7 @@ footer { font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--lin
     <ul class="opts">
       <li><b>Stage 2 on YouTube:</b> each retarget cell runs next to a cold cell with the same video, so a second exposure reads directly against a first. The cold cells exclude everyone who has seen an ad (1,400 people). The subscriber exclusion isn't active yet: the list is at 80 and needs 100.</li>
       <li><b>Pools this run leaves:</b> YouTube "viewed as ad" lists for cat-rage-quit and song-says-your-name; TikTok 6-second viewer audiences for both ad groups; Instagram's stream-clip and animation video audiences now include both posts.</li>
-      <li><b>First hours, Wed about 1 PM ET (too early to judge):</b> TikTok anime 21 follows on $1.87, gaming 2 follows on $0.01. Instagram 55 interactions on $1.70, $0.03 each.</li>
+      <li><b>Results so far</b> are in Round 2 results, below.</li>
       <li><b>Settings carried from round 1.</b> YouTube: YouTube only, phones, US English. TikTok: Follows Spark ads, US 18–44, TikTok placement only, Smart interests and Music refresh off. Instagram: interactions on existing posts, US 18–34 firm, Reels only, Advantage+ audience off.</li>
       <li><b>Read on Mon Nov 30,</b> per niche: reach, cost per result, CPM, view or hook rate, completion, follows and the pool left behind. Instagram compares each niche with its broad control; TikTok compares with round 1's broad $0.23 per follow; YouTube compares retarget with cold.</li>
       <li><b>Friday:</b> the music cells start with the Real Soon release at 11 AM.</li>
@@ -811,83 +815,91 @@ footer { font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--lin
 
   <section id="round2-results" aria-labelledby="r2res-h">
     <div class="sec-head">
-      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px"><h2 id="r2res-h">Round 2 results</h2><span class="draft"><i class="dot warn"></i>Fills after the Mon Nov 30 pull</span></div>
-      <p>Each slot below comes from the same reports we pulled for round 1, so these are the numbers we know will arrive. Grey bars fill on Mon Nov 30.</p>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px"><h2 id="r2res-h">Round 2 results</h2><span class="draft"><i class="dot warn"></i>TikTok final. Instagram and YouTube to date</span></div>
+      <p>TikTok ended Thursday, so its numbers are final. Instagram and YouTube run until 11:59 PM ET tonight, so theirs are to date and get their final numbers on Saturday. The music cells start with today's Real Soon release. Read Fri Nov 27, about 8:10 to 8:36 AM ET.</p>
     </div>
 
     <div class="panel" style="max-width:none">
       <div>
-        <div class="chart-title">Day 1 so far (Wed Nov 25)</div>
-        <div class="chart-sub">Too early to judge. Platforms report with a lag, and Wednesday was a partial day.</div>
+        <div class="chart-title">Against last week, cost per result</div>
+        <div class="chart-sub">Shorter is cheaper. Round 1 ran Nov 18–22, round 2 Nov 25–27.</div>
       </div>
-      <div class="tbl-wrap" style="border:0">
-        <table class="d1">
-          <thead><tr><th class="sticky" scope="col">Cell</th><th scope="col">Read</th><th class="r" scope="col">Spend</th><th class="r" scope="col">Impr.</th><th class="r" scope="col">Result</th><th class="r" scope="col">Cost per result</th><th class="r" scope="col">Rate</th></tr></thead>
-          <tbody>
-            <tr><th class="sticky" scope="row">YouTube, Gamers cold</th><td>5:08 PM ET</td><td class="r">$2.95</td><td class="r">370</td><td class="r">73 views</td><td class="r">$0.040</td><td class="r">19.7% view rate</td></tr>
-            <tr><th class="sticky" scope="row">YouTube, Anime cold</th><td>5:08 PM ET</td><td class="r">$2.66</td><td class="r">174</td><td class="r">109 views</td><td class="r">$0.024</td><td class="r">62.6% view rate</td></tr>
-            <tr><th class="sticky" scope="row">YouTube, both Stage 2 retarget cells</th><td>5:08 PM ET</td><td class="r">$0</td><td class="r">0</td><td class="r">Not served yet</td><td class="r"></td><td class="r"></td></tr>
-            <tr><th class="sticky" scope="row">TikTok, Gaming (no-sound)</th><td>5:15 PM ET</td><td class="r">$7.48</td><td class="r">941</td><td class="r">114 follows</td><td class="r">$0.066</td><td class="r">12.1% follow rate</td></tr>
-            <tr><th class="sticky" scope="row">TikTok, Anime (song)</th><td>5:15 PM ET</td><td class="r">$7.97</td><td class="r">1,348</td><td class="r">69 follows</td><td class="r">$0.116</td><td class="r">5.1% follow rate</td></tr>
-            <tr><th class="sticky" scope="row">Instagram, Gaming interests</th><td>5:10 PM ET</td><td class="r">$1.75</td><td class="r">169</td><td class="r">72 interactions</td><td class="r">$0.024</td><td class="r">64% hook rate</td></tr>
-            <tr><th class="sticky" scope="row">Instagram, Gaming broad</th><td>5:10 PM ET</td><td class="r">$1.66</td><td class="r">166</td><td class="r">60 interactions</td><td class="r">$0.028</td><td class="r">71% hook rate</td></tr>
-            <tr><th class="sticky" scope="row">Instagram, Anime interests</th><td>5:10 PM ET</td><td class="r">$1.72</td><td class="r">202</td><td class="r">63 interactions</td><td class="r">$0.027</td><td class="r">43% hook rate</td></tr>
-            <tr><th class="sticky" scope="row">Instagram, Anime broad</th><td>5:10 PM ET</td><td class="r">$1.72</td><td class="r">195</td><td class="r">70 interactions</td><td class="r">$0.025</td><td class="r">54% hook rate</td></tr>
-          </tbody>
-        </table>
+      <div class="vs3">
+        <div>
+          <div class="chart-title">TikTok, per follow <span class="tag">Final</span></div>
+          <div class="mchart">
+            <div class="mrow"><span class="lab">Round 1, broad</span><span class="track"><span class="fill bench" style="--w:100%" title="Round 1 $0.226 per follow"></span></span><span class="val">$0.226</span></div>
+            <div class="mrow"><span class="lab">Round 2, niches</span><span class="track"><span class="fill" style="--w:63.3%" title="Round 2 $0.143 per follow"></span></span><span class="val">$0.143</span></div>
+          </div>
+          <p class="chart-sub" style="margin-top:6px">37% cheaper</p>
+        </div>
+        <div>
+          <div class="chart-title">Instagram, per follow <span class="tag plain">To date</span></div>
+          <div class="mchart">
+            <div class="mrow"><span class="lab">Round 1</span><span class="track"><span class="fill bench" style="--w:100%" title="Round 1 $2.17 per follow"></span></span><span class="val">$2.17</span></div>
+            <div class="mrow"><span class="lab">Round 2</span><span class="track"><span class="fill" style="--w:66.4%" title="Round 2 $1.44 per follow"></span></span><span class="val">$1.44</span></div>
+          </div>
+          <p class="chart-sub" style="margin-top:6px">34% cheaper</p>
+        </div>
+        <div>
+          <div class="chart-title">YouTube, per view <span class="tag plain">To date</span></div>
+          <div class="mchart">
+            <div class="mrow"><span class="lab">Round 1</span><span class="track"><span class="fill bench" style="--w:71.4%" title="Round 1 $0.0145 per view"></span></span><span class="val">$0.0145</span></div>
+            <div class="mrow"><span class="lab">Round 2, cold</span><span class="track"><span class="fill" style="--w:100%" title="Round 2 $0.020 per view"></span></span><span class="val">$0.020</span></div>
+          </div>
+          <p class="chart-sub" style="margin-top:6px">40% more per view</p>
+        </div>
       </div>
+      <div class="legend"><span><i class="sw bench"></i>Round 1</span><span><i class="sw"></i>Round 2</span></div>
+    </div>
+
+    <div class="plat">
+      <h3>What round 2 shows so far</h3>
       <ul class="read">
-        <li><b>YouTube cold views cost more than round 1 so far:</b> Gamers $0.040 against $0.017 (at the $0.04 cap), Anime $0.024 against $0.009.</li>
-        <li><b>The Stage 2 retarget cells hadn't served by 5 PM.</b> Both ads are approved. If they are still at zero on Thursday morning, the pools or the $0.04 cap are too small to win the auction.</li>
-        <li><b>TikTok niches are well under round 1 so far:</b> $15.45 bought 183 follows at $0.084 each, against $0.23 for round 1's broad audience. Gaming (no-sound) $0.066 per follow at a 12.1% follow rate; anime $0.116. TikTok's reach figure is lagging, so frequency isn't readable yet.</li>
-        <li><b>Instagram, niche against broad:</b> too early, every cell is under 210 impressions. So far $6.85 bought 265 interactions ($0.026 each) and 6 follows. Gaming interests has the highest interaction rate (43%); anime broad leads on follows (3) and profile visits (5).</li>
+        <li><b>TikTok niche targeting beat broad:</b> $0.143 per follow against $0.226, with a lower CPM ($7.22 against $9.48) and a higher follow rate (5.05% against 4.20%). Gaming $0.129, anime $0.159. Day 2 cost more on both (about $0.165).</li>
+        <li><b>On Instagram, the broad control beat interests on both videos.</b> Gaming 7 follows against 1; anime 10 against 7, with 30 profile visits against 14. The interest targeting added nothing so far.</li>
+        <li><b>The love song (animation) held viewers best on all three platforms:</b> 14.9% watched to the end on TikTok against 3.6% for the gaming clip; on Instagram about 52% of 3-second viewers reached a ThruPlay against 35–37%; on YouTube 64% finished against 46%.</li>
+        <li><b>YouTube's own custom segments got only 10–20% of delivery.</b> Google's broad segments (Hardcore Gamers, Comics &amp; Animation Fans, Video Game Streaming) took the rest, as in round 1.</li>
+        <li><b>TikTok reported 34% of Gaming's follows (106 of 309) under an "Unknown" state.</b> Without them, Gaming costs $0.158 per follow, level with anime.</li>
+        <li><b>Instagram interactions are about 98% likes,</b> so follows and profile visits are the outcome to read there.</li>
       </ul>
     </div>
 
-    <div class="plat">
-      <div class="plat-head"><h3>YouTube</h3><span class="meta-line">The Stage 2 read: retarget against cold, per niche, on the same video.</span></div>
-      <div class="tbl-wrap">
-        <table class="wide slots">
-          <thead><tr><th class="sticky" scope="col">Cell</th><th class="r" scope="col">Spend</th><th class="r" scope="col">Impr.</th><th class="r" scope="col">Unique reach</th><th class="r" scope="col">Views</th><th class="r" scope="col">View rate</th><th class="r" scope="col">Watched to end</th><th class="r" scope="col">Cost per view</th><th class="r" scope="col">CPM</th><th class="r" scope="col">Earned subs</th></tr></thead>
-          <tbody>
-            <tr><th class="sticky" scope="row">Gaming, Stage 2 retarget</th><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td></tr>
-            <tr><th class="sticky" scope="row">Gaming, cold</th><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td></tr>
-            <tr><th class="sticky" scope="row">Anime, Stage 2 retarget</th><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td></tr>
-            <tr><th class="sticky" scope="row">Anime, cold</th><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td></tr>
-            <tr><th class="sticky" scope="row">Music, Stage 2 retarget<span class="sub">Fri</span></th><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td></tr>
-            <tr><th class="sticky" scope="row">Music, cold (Pop, VTuber + Vocaloid)<span class="sub">Fri</span></th><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td></tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="panel" style="max-width:none">
+      <div class="chart-title">Stage 2 status</div>
+      <p class="stage2-status">YouTube retargeting didn't deliver in round 2; we're fixing delivery before the next retarget run.</p>
     </div>
 
     <div class="plat">
-      <div class="plat-head"><h3>TikTok</h3><span class="meta-line">Each niche against round 1's broad audience ($0.23 per follow).</span></div>
+      <div class="plat-head"><h3>TikTok</h3><span class="tag lead">Final</span><span class="meta-line">Nov 25–26. Read Fri 8:33 AM ET. Each niche against round 1's broad audience.</span></div>
       <div class="tbl-wrap">
         <table class="wide slots">
           <thead><tr><th class="sticky" scope="col">Cell</th><th class="r" scope="col">Spend</th><th class="r" scope="col">Impr.</th><th class="r" scope="col">Reach</th><th class="r" scope="col">Freq.</th><th class="r" scope="col">6-sec view rate</th><th class="r" scope="col">100% view rate</th><th class="r" scope="col">Follow rate</th><th class="r" scope="col">Cost per follow</th><th class="r" scope="col">CPM</th><th class="r" scope="col">Profile visits</th><th class="r" scope="col">Follows</th></tr></thead>
           <tbody>
-            <tr><th class="sticky" scope="row">Gaming (no-sound)</th><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td></tr>
-            <tr><th class="sticky" scope="row">Anime &amp; animation (song)</th><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td></tr>
+            <tr><th class="sticky" scope="row">Gaming (no-sound)</th><td class="r">$39.97</td><td class="r">5,624</td><td class="r">5,121</td><td class="r">1.10</td><td class="r">17.5%</td><td class="r">3.6%</td><td class="r">5.49%</td><td class="r">$0.129</td><td class="r">$7.11</td><td class="r">83</td><td class="r">309</td></tr>
+            <tr><th class="sticky" scope="row">Anime &amp; animation (song)</th><td class="r">$40.00</td><td class="r">5,459</td><td class="r">4,842</td><td class="r">1.13</td><td class="r">31.9%</td><td class="r">14.9%</td><td class="r">4.60%</td><td class="r">$0.159</td><td class="r">$7.33</td><td class="r">122</td><td class="r">251</td></tr>
             <tr><th class="sticky" scope="row">Music &amp; VTuber<span class="sub">Fri</span></th><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td></tr>
-            <tr class="total"><th class="sticky" scope="row">Round 1, broad (baseline)</th><td class="r">$159.67</td><td class="r">16,841</td><td class="r">11,516</td><td class="r">1.46</td><td class="r">18.1%</td><td class="r">5.4%</td><td class="r">4.20%</td><td class="r">$0.23</td><td class="r">$9.48</td><td class="r">207</td><td class="r">708</td></tr>
+            <tr class="total"><th class="sticky" scope="row">Round 2 total</th><td class="r">$79.97</td><td class="r">11,083</td><td class="r">7,931</td><td class="r">1.40</td><td class="r">24.6%</td><td class="r">9.2%</td><td class="r">5.05%</td><td class="r">$0.143</td><td class="r">$7.22</td><td class="r">205</td><td class="r">560</td></tr>
+            <tr><th class="sticky" scope="row">Round 1, broad (baseline)</th><td class="r">$159.67</td><td class="r">16,841</td><td class="r">11,516</td><td class="r">1.46</td><td class="r">18.1%</td><td class="r">5.4%</td><td class="r">4.20%</td><td class="r">$0.226</td><td class="r">$9.48</td><td class="r">207</td><td class="r">708</td></tr>
           </tbody>
         </table>
       </div>
     </div>
 
     <div class="plat">
-      <div class="plat-head"><h3>Instagram</h3><span class="meta-line">Each niche against its broad control on the same post.</span></div>
+      <div class="plat-head"><h3>Instagram</h3><span class="tag lead plain">To date, ends tonight</span><span class="meta-line">Read Fri 8:36 AM ET; Meta reports in Pacific time. Each niche against its broad control on the same post.</span></div>
       <div class="tbl-wrap">
         <table class="wide slots">
-          <thead><tr><th class="sticky" scope="col">Cell</th><th class="r" scope="col">Spend</th><th class="r" scope="col">Impr.</th><th class="r" scope="col">Reach</th><th class="r" scope="col">3-sec hook rate</th><th class="r" scope="col">ThruPlay rate</th><th class="r" scope="col">Interaction rate</th><th class="r" scope="col">Cost per interaction</th><th class="r" scope="col">CPM</th><th class="r" scope="col">Profile visits</th><th class="r" scope="col">Follows</th></tr></thead>
+          <thead><tr><th class="sticky" scope="col">Cell</th><th class="r" scope="col">Spend</th><th class="r" scope="col">Impr.</th><th class="r" scope="col">Reach</th><th class="r" scope="col">3-sec hook rate</th><th class="r" scope="col">ThruPlay rate</th><th class="r" scope="col">Interaction rate</th><th class="r" scope="col">Cost per interaction</th><th class="r" scope="col">CPM</th><th class="r" scope="col">Profile visits</th><th class="r" scope="col">Follows</th><th class="r" scope="col">Cost per follow</th></tr></thead>
           <tbody>
-            <tr><th class="sticky" scope="row">Gaming, interests</th><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td></tr>
-            <tr><th class="sticky" scope="row">Gaming, broad control</th><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td></tr>
-            <tr><th class="sticky" scope="row">Anime, interests</th><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td></tr>
-            <tr><th class="sticky" scope="row">Anime, broad control</th><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td></tr>
-            <tr><th class="sticky" scope="row">Music, interests<span class="sub">Fri</span></th><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td></tr>
-            <tr><th class="sticky" scope="row">Music, broad control<span class="sub">Fri</span></th><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td></tr>
+            <tr><th class="sticky" scope="row">Gaming, interests</th><td class="r">$9.18</td><td class="r">966</td><td class="r">940</td><td class="r">63.1%</td><td class="r">21.8%</td><td class="r">34.8%</td><td class="r">$0.027</td><td class="r">$9.50</td><td class="r">4</td><td class="r">1</td><td class="r">$9.18</td></tr>
+            <tr><th class="sticky" scope="row">Gaming, broad control</th><td class="r">$9.53</td><td class="r">1,029</td><td class="r">1,001</td><td class="r">66.9%</td><td class="r">24.7%</td><td class="r">36.9%</td><td class="r">$0.025</td><td class="r">$9.26</td><td class="r">6</td><td class="r">7</td><td class="r">$1.36</td></tr>
+            <tr><th class="sticky" scope="row">Anime, interests</th><td class="r">$8.66</td><td class="r">979</td><td class="r">929</td><td class="r">51.3%</td><td class="r">26.1%</td><td class="r">32.3%</td><td class="r">$0.027</td><td class="r">$8.85</td><td class="r">14</td><td class="r">7</td><td class="r">$1.24</td></tr>
+            <tr><th class="sticky" scope="row">Anime, broad control</th><td class="r">$8.69</td><td class="r">988</td><td class="r">934</td><td class="r">55.4%</td><td class="r">29.0%</td><td class="r">32.4%</td><td class="r">$0.027</td><td class="r">$8.78</td><td class="r">30</td><td class="r">10</td><td class="r">$0.87</td></tr>
+            <tr><th class="sticky" scope="row">Music, interests<span class="sub">Fri</span></th><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td></tr>
+            <tr><th class="sticky" scope="row">Music, broad control<span class="sub">Fri</span></th><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td></tr>
+            <tr class="total"><th class="sticky" scope="row">Round 2 to date</th><td class="r">$36.06</td><td class="r">3,962</td><td class="r">3,625</td><td class="r">59.2%</td><td class="r">25.4%</td><td class="r">34.1%</td><td class="r">$0.027</td><td class="r">$9.10</td><td class="r">54</td><td class="r">25</td><td class="r">$1.44</td></tr>
+            <tr><th class="sticky" scope="row">Round 1 (baseline)</th><td class="r">$58.57</td><td class="r">5,964</td><td class="r">4,774</td><td class="r">42.7%</td><td class="r">17.5%</td><td class="r">30.9%</td><td class="r">$0.032</td><td class="r">$9.82</td><td class="r">49</td><td class="r">27</td><td class="r">$2.17</td></tr>
           </tbody>
         </table>
       </div>
@@ -895,22 +907,66 @@ footer { font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--lin
     </div>
 
     <div class="plat">
-      <div class="plat-head"><h3>What the pull updates on this page</h3></div>
+      <div class="plat-head"><h3>YouTube</h3><span class="tag lead plain">To date, ends tonight</span><span class="meta-line">Read Fri 8:29 AM ET. Retarget against cold, per niche, on the same video.</span></div>
+      <div class="tbl-wrap">
+        <table class="wide slots">
+          <thead><tr><th class="sticky" scope="col">Cell</th><th class="r" scope="col">Spend</th><th class="r" scope="col">Impr.</th><th class="r" scope="col">Unique reach</th><th class="r" scope="col">Views</th><th class="r" scope="col">View rate</th><th class="r" scope="col">Watched to end</th><th class="r" scope="col">Cost per view</th><th class="r" scope="col">CPM</th><th class="r" scope="col">Earned subs</th></tr></thead>
+          <tbody>
+            <tr><th class="sticky" scope="row">Gaming, Stage 2 retarget</th><td colspan="9" class="nt">Not served: 0 impressions</td></tr>
+            <tr><th class="sticky" scope="row">Gaming, cold (cat-rage-quit)</th><td class="r">$11.80</td><td class="r">1,122</td><td class="r">1,116</td><td class="r">542</td><td class="r">48.3%</td><td class="r">46.2%</td><td class="r">$0.022</td><td class="r">$10.52</td><td class="r">0</td></tr>
+            <tr><th class="sticky" scope="row">Anime, Stage 2 retarget</th><td colspan="9" class="nt">Not served: 0 impressions</td></tr>
+            <tr><th class="sticky" scope="row">Anime, cold (song)</th><td class="r">$11.69</td><td class="r">948</td><td class="r">949</td><td class="r">616</td><td class="r">65.0%</td><td class="r">64.4%</td><td class="r">$0.019</td><td class="r">$12.33</td><td class="r">0</td></tr>
+            <tr><th class="sticky" scope="row">Music, Stage 2 retarget<span class="sub">Fri</span></th><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td></tr>
+            <tr><th class="sticky" scope="row">Music, cold (Pop, VTuber + Vocaloid)<span class="sub">Fri</span></th><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td><td class="r pend"><span class="sr">Pending</span></td></tr>
+            <tr class="total"><th class="sticky" scope="row">Round 2 to date</th><td class="r">$23.49</td><td class="r">2,070</td><td class="r"></td><td class="r">1,158</td><td class="r">55.9%</td><td class="r"></td><td class="r">$0.020</td><td class="r">$11.35</td><td class="r">0</td></tr>
+            <tr><th class="sticky" scope="row">Round 1 (baseline)</th><td class="r">$81.57</td><td class="r">8,129</td><td class="r">9,160</td><td class="r">5,644</td><td class="r">69.4%</td><td class="r">68.3%</td><td class="r">$0.0145</td><td class="r">$10.03</td><td class="r">0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small muted">Unique reach is read from Google's screens and impressions from its API, a few minutes apart, so Anime's reach shows one more than its impressions. Gaming's first day lost delivery to Shorts (10% view rate there); from Thursday it ran almost all in-stream at $0.014–$0.017 per view.</p>
+    </div>
+
+    <div class="plat">
+      <div class="plat-head"><h3>Pools after round 2</h3><span class="meta-line">What Stage 2 can retarget next. Read Fri Nov 27.</span></div>
       <div class="tbl-wrap">
         <table class="mid">
-          <thead><tr><th class="sticky" scope="col">Section</th><th scope="col">What changes</th><th scope="col">How sure</th></tr></thead>
+          <thead><tr><th class="sticky" scope="col">Pool</th><th class="r" scope="col">Size now</th><th class="r" scope="col">Before the run</th><th scope="col">Can target?</th></tr></thead>
           <tbody>
-            <tr><th class="sticky" scope="row">Round 2 results</th><td>Every grey bar above</td><td><span class="cert sure"><i class="dot good"></i>Sure</span><span class="sub">Same reports as round 1</span></td></tr>
-            <tr><th class="sticky" scope="row">This week: the niche run</th><td>Status to ended; actual spend against each cell's maximum</td><td><span class="cert sure"><i class="dot good"></i>Sure</span></td></tr>
-            <tr><th class="sticky" scope="row">Why each platform has its goal</th><td>Round 2 bars beside round 1 for CPM and cost per follower</td><td><span class="cert sure"><i class="dot good"></i>Sure</span></td></tr>
-            <tr><th class="sticky" scope="row">Annex 1</th><td>A round 2 row under each platform's goal</td><td><span class="cert sure"><i class="dot good"></i>Sure</span></td></tr>
-            <tr><th class="sticky" scope="row">Audience capture</th><td>Pool sizes: YouTube's per-video ad-viewer lists, TikTok's 6-second audiences for both ad groups, Instagram's per-format pools</td><td><span class="cert sure"><i class="dot good"></i>Sure</span><span class="sub">Read in each audience manager</span></td></tr>
-            <tr><th class="sticky" scope="row">Frequency strip</th><td>Round 2 frequency per platform</td><td><span class="cert sure"><i class="dot good"></i>Sure for TikTok and Instagram</span><span class="sub">YouTube needs its reach columns added by hand, as in round 1</span></td></tr>
-            <tr><th class="sticky" scope="row">YouTube Stage 2 read</th><td>Retarget against cold, cost per view and view rate</td><td><span class="cert dep"><i class="dot warn"></i>Depends</span><span class="sub">Only if the retarget cells deliver</span></td></tr>
-            <tr><th class="sticky" scope="row">Music &amp; VTuber row</th><td>A one-day read on all three platforms</td><td><span class="cert dep"><i class="dot warn"></i>Depends</span><span class="sub">Real Soon going up Friday and passing review</span></td></tr>
-            <tr><th class="sticky" scope="row">Stage ladder</th><td>Whether TikTok and Instagram move to Stage 2</td><td><span class="cert dep"><i class="dot warn"></i>Depends</span><span class="sub">On the niche pool sizes (TikTok needs 1,000 per pool)</span></td></tr>
-            <tr><th class="sticky" scope="row">TikTok niche breakdown</th><td>Which creator and video categories the follows came from</td><td><span class="cert dep"><i class="dot warn"></i>Needs an export download</span></td></tr>
-            <tr><th class="sticky" scope="row">Instagram splits per ad</th><td>Age, gender and placement per ad</td><td><span class="cert dep"><i class="dot warn"></i>Needs an export download</span></td></tr>
+            <tr class="grp"><th colspan="4" scope="colgroup">TikTok (needs 1,000)</th></tr>
+            <tr><th class="sticky" scope="row">6-second viewers, no-sound</th><td class="r">36</td><td class="r">new</td><td>No. TikTok recorded 983 paid 6-second views; the audience lags far behind</td></tr>
+            <tr><th class="sticky" scope="row">6-second viewers, song</th><td class="r">9</td><td class="r">new</td><td>No. 1,742 paid 6-second views recorded</td></tr>
+            <tr class="grp"><th colspan="4" scope="colgroup">Instagram (per-format video pools)</th></tr>
+            <tr><th class="sticky" scope="row">Stream clips, 3-second viewers</th><td class="r">2,900–3,400</td><td class="r">1,900–2,200</td><td>Yes</td></tr>
+            <tr><th class="sticky" scope="row">Stream clips, engaged viewers</th><td class="r">1,800–2,100</td><td class="r">1,100–1,200</td><td>Yes</td></tr>
+            <tr><th class="sticky" scope="row">Animations, 3-second viewers</th><td class="r">2,800–3,300</td><td class="r">2,000–2,300</td><td>Yes</td></tr>
+            <tr><th class="sticky" scope="row">Animations, engaged viewers</th><td class="r">2,500–3,000</td><td class="r">1,900–2,200</td><td>Yes</td></tr>
+            <tr><th class="sticky" scope="row">juniper.pi engagers</th><td class="r">7,200–8,500</td><td class="r">6,500–7,600</td><td>Used for exclusion</td></tr>
+            <tr class="grp"><th colspan="4" scope="colgroup">YouTube (lists, YouTube network)</th></tr>
+            <tr><th class="sticky" scope="row">Ad viewers, cat-rage-quit</th><td class="r">96</td><td class="r">new</td><td>Not yet (under 100)</td></tr>
+            <tr><th class="sticky" scope="row">Ad viewers, song</th><td class="r">88</td><td class="r">new</td><td>Not yet (under 100)</td></tr>
+            <tr><th class="sticky" scope="row">Anyone who saw an ad</th><td class="r">1,600</td><td class="r">1,400</td><td>Yes</td></tr>
+            <tr><th class="sticky" scope="row">Stream-clip viewers</th><td class="r">1,400</td><td class="r">1,300</td><td>Yes</td></tr>
+            <tr><th class="sticky" scope="row">Animation viewers</th><td class="r">9,600</td><td class="r">9,600</td><td>Yes</td></tr>
+            <tr><th class="sticky" scope="row">Music viewers</th><td class="r">1,200</td><td class="r">1,100</td><td>Yes</td></tr>
+            <tr><th class="sticky" scope="row">Any Juniper video</th><td class="r">18,000</td><td class="r">16,000</td><td>Yes</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="plat">
+      <div class="plat-head"><h3>What the final pull still updates</h3></div>
+      <div class="tbl-wrap">
+        <table class="mid">
+          <thead><tr><th class="sticky" scope="col">Section</th><th scope="col">What changes</th><th scope="col">Status</th></tr></thead>
+          <tbody>
+            <tr><th class="sticky" scope="row">TikTok results</th><td>Final numbers, read Friday</td><td><span class="cert sure"><i class="dot good"></i>Done</span></td></tr>
+            <tr><th class="sticky" scope="row">Instagram and YouTube results</th><td>Tonight's last hours and the final totals</td><td><span class="cert sure"><i class="dot good"></i>Saturday</span></td></tr>
+            <tr><th class="sticky" scope="row">This week: the niche run</th><td>Status to ended; actual spend against each cell's maximum</td><td><span class="cert sure"><i class="dot good"></i>Saturday</span></td></tr>
+            <tr><th class="sticky" scope="row">Why each platform has its goal, Annex 1</th><td>Round 2 bars and rows beside round 1</td><td><span class="cert sure"><i class="dot good"></i>Saturday</span></td></tr>
+            <tr><th class="sticky" scope="row">Music &amp; VTuber rows</th><td>A one-day read on all three platforms</td><td><span class="cert dep"><i class="dot warn"></i>Depends</span><span class="sub">Real Soon going up today and passing review</span></td></tr>
+            <tr><th class="sticky" scope="row">YouTube Stage 2 read</th><td>Retarget against cold</td><td><span class="cert dep"><i class="dot warn"></i>Not this round</span><span class="sub">The retarget cells didn't serve</span></td></tr>
+            <tr><th class="sticky" scope="row">Stage ladder</th><td>Whether TikTok and Instagram move to Stage 2</td><td><span class="cert dep"><i class="dot warn"></i>Depends</span><span class="sub">Instagram's pools are big enough; TikTok's are not</span></td></tr>
             <tr><th class="sticky" scope="row">TikTok follower check</th><td>Net new followers in the week, against paid follows</td><td><span class="cert dep"><i class="dot warn"></i>Needs a TikTok Studio sign-in</span></td></tr>
           </tbody>
         </table>
