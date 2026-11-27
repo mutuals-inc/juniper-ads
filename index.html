@@ -141,6 +141,27 @@ section { display: grid; gap: 20px; min-width: 0; }
 .vs3 .mrow { grid-template-columns: minmax(0, 7rem) minmax(0, 1fr) 3.8rem; }
 .plat-head .tag.lead { margin-bottom: 0; }
 @media (max-width: 900px) { .vs3 { grid-template-columns: 1fr; } }
+.score { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.score .panel { align-content: start; gap: 10px; }
+.pgroup { display: grid; gap: 2px; padding-top: 10px; border-top: 1px solid var(--line); }
+.pgroup-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; font-size: 13px; }
+.pgroup-head b { font-weight: 600; }
+.pgroup .mchart { margin-top: 4px; gap: 6px; }
+.score .mrow { grid-template-columns: minmax(0, 4.4rem) minmax(0, 1fr) 4.6rem; }
+.chg { font-size: 12.5px; font-weight: 600; white-space: nowrap; }
+.chg.good { color: var(--good-ink); }
+.chg.bad { color: var(--warn-ink); }
+.fqs { display: grid; gap: 12px; margin-top: 4px; }
+.fq-row { display: grid; grid-template-columns: minmax(0, 4.4rem) minmax(0, 1fr) 5.6rem; gap: 10px; align-items: center; font-size: 13px; }
+.fq-row .lab { color: var(--ink-2); }
+.fq-row .val { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+.fq { position: relative; height: 14px; margin: 0 6px; }
+.fq .ln { position: absolute; left: -6px; right: -6px; top: 6px; height: 2px; background: var(--track); }
+.fq .d { position: absolute; top: 1px; width: 12px; height: 12px; border-radius: 50%; transform: translateX(-50%); }
+.fq .d.r1 { background: var(--bench); }
+.fq .d.r2 { background: var(--data); box-shadow: 0 0 0 2px var(--surface); }
+@media (max-width: 1000px) { .score { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 680px) { .score { grid-template-columns: 1fr; } }
 .d1 { min-width: 680px; }
 .d1 th, .d1 td { padding: 7px 10px; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -333,6 +354,143 @@ footer { font-size: 12.5px; color: var(--muted); border-top: 1px solid var(--lin
       <div><span class="small muted">TikTok, goal: follows</span><div class="goal">Stage 1, niche clusters</div><span class="small">Three niche ad groups.</span></div>
       <div><span class="small muted">Instagram, goal: engagement</span><div class="goal">Stage 1, niche clusters</div><span class="small">Each niche next to a broad control. Click-to-Instagram-Direct as Stage 1 (alt).</span></div>
     </div>
+  </section>
+
+  <section id="scorecard" aria-labelledby="score-h">
+    <div class="sec-head">
+      <h2 id="score-h">What to track: round 1 to round 2</h2>
+      <p>The numbers that show whether the staged plan is working. Each platform pair is drawn on its own scale. Round 2: TikTok is final (Nov 25–26); Instagram and YouTube are to date until Fri 11:59 PM ET.</p>
+    </div>
+
+    <div class="score">
+      <article class="panel">
+        <div><div class="chart-title">Cost per retained person</div><div class="chart-sub">The headline: the product model is retention. Shorter is cheaper.</div></div>
+        <div class="pgroup">
+          <div class="pgroup-head"><b>TikTok, per follow</b><span class="chg good">37% cheaper</span></div>
+          <div class="mchart">
+            <div class="mrow"><span class="lab">Round 1</span><span class="track"><span class="fill bench" style="--w:100%" title="Round 1 $0.226 per follow"></span></span><span class="val">$0.226</span></div>
+            <div class="mrow"><span class="lab">Round 2</span><span class="track"><span class="fill" style="--w:63.3%" title="Round 2 $0.143 per follow"></span></span><span class="val">$0.143</span></div>
+          </div>
+        </div>
+        <div class="pgroup">
+          <div class="pgroup-head"><b>Instagram, per follow</b><span class="chg good">34% cheaper</span></div>
+          <div class="mchart">
+            <div class="mrow"><span class="lab">Round 1</span><span class="track"><span class="fill bench" style="--w:100%" title="Round 1 $2.17 per follow"></span></span><span class="val">$2.17</span></div>
+            <div class="mrow"><span class="lab">Round 2</span><span class="track"><span class="fill" style="--w:66.4%" title="Round 2 $1.44 per follow"></span></span><span class="val">$1.44</span></div>
+          </div>
+        </div>
+        <div class="pgroup">
+          <div class="pgroup-head"><b>YouTube, per subscriber</b><span class="chg bad">No subscribers</span></div>
+          <p class="small muted">0 earned subscribers in both rounds.</p>
+        </div>
+      </article>
+
+      <article class="panel">
+        <div><div class="chart-title">Cost per reach unit</div><div class="chart-sub">Stage 1's goal on each platform. Shorter is cheaper.</div></div>
+        <div class="pgroup">
+          <div class="pgroup-head"><b>TikTok, per follow</b><span class="chg good">37% cheaper</span></div>
+          <div class="mchart">
+            <div class="mrow"><span class="lab">Round 1</span><span class="track"><span class="fill bench" style="--w:100%" title="Round 1 $0.226 per follow"></span></span><span class="val">$0.226</span></div>
+            <div class="mrow"><span class="lab">Round 2</span><span class="track"><span class="fill" style="--w:63.3%" title="Round 2 $0.143 per follow"></span></span><span class="val">$0.143</span></div>
+          </div>
+        </div>
+        <div class="pgroup">
+          <div class="pgroup-head"><b>Instagram, per interaction</b><span class="chg good">16% cheaper</span></div>
+          <div class="mchart">
+            <div class="mrow"><span class="lab">Round 1</span><span class="track"><span class="fill bench" style="--w:100%" title="Round 1 $0.032 per interaction"></span></span><span class="val">$0.032</span></div>
+            <div class="mrow"><span class="lab">Round 2</span><span class="track"><span class="fill" style="--w:83.9%" title="Round 2 $0.027 per interaction"></span></span><span class="val">$0.027</span></div>
+          </div>
+        </div>
+        <div class="pgroup">
+          <div class="pgroup-head"><b>YouTube, per view</b><span class="chg bad">40% more</span></div>
+          <div class="mchart">
+            <div class="mrow"><span class="lab">Round 1</span><span class="track"><span class="fill bench" style="--w:71.4%" title="Round 1 $0.0145 per view"></span></span><span class="val">$0.0145</span></div>
+            <div class="mrow"><span class="lab">Round 2</span><span class="track"><span class="fill" style="--w:100%" title="Round 2 $0.020 per view"></span></span><span class="val">$0.020</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel">
+        <div><div class="chart-title">Hold</div><div class="chart-sub">Did they engage with the format? Longer is better.</div></div>
+        <div class="pgroup">
+          <div class="pgroup-head"><b>TikTok, watched to the end</b><span class="chg good">Up</span></div>
+          <div class="mchart">
+            <div class="mrow"><span class="lab">Round 1</span><span class="track"><span class="fill bench" style="--w:58.7%" title="Round 1 5.4%"></span></span><span class="val">5.4%</span></div>
+            <div class="mrow"><span class="lab">Round 2</span><span class="track"><span class="fill" style="--w:100%" title="Round 2 9.2%"></span></span><span class="val">9.2%</span></div>
+          </div>
+          <p class="small muted">Love song 14.9%, gaming clip 3.6%.</p>
+        </div>
+        <div class="pgroup">
+          <div class="pgroup-head"><b>Instagram, ThruPlay rate</b><span class="chg good">Up</span></div>
+          <div class="mchart">
+            <div class="mrow"><span class="lab">Round 1</span><span class="track"><span class="fill bench" style="--w:68.9%" title="Round 1 17.5%"></span></span><span class="val">17.5%</span></div>
+            <div class="mrow"><span class="lab">Round 2</span><span class="track"><span class="fill" style="--w:100%" title="Round 2 25.4%"></span></span><span class="val">25.4%</span></div>
+          </div>
+        </div>
+        <div class="pgroup">
+          <div class="pgroup-head"><b>YouTube, view rate</b><span class="chg bad">Down</span></div>
+          <div class="mchart">
+            <div class="mrow"><span class="lab">Round 1</span><span class="track"><span class="fill bench" style="--w:100%" title="Round 1 69.4%"></span></span><span class="val">69.4%</span></div>
+            <div class="mrow"><span class="lab">Round 2</span><span class="track"><span class="fill" style="--w:80.5%" title="Round 2 55.9%"></span></span><span class="val">55.9%</span></div>
+          </div>
+          <p class="small muted">Watched to the end: 68% in round 1; 64% anime and 46% gaming in round 2.</p>
+        </div>
+      </article>
+
+      <article class="panel">
+        <div><div class="chart-title">Retargetable pools</div><div class="chart-sub">Stage 2 readiness: people we can show Juniper again. Bars use each range's midpoint.</div></div>
+        <div class="pgroup">
+          <div class="pgroup-head"><b>Instagram, stream-clip viewers</b><span class="chg good">Ready</span></div>
+          <div class="mchart">
+            <div class="mrow"><span class="lab">Before</span><span class="track"><span class="fill bench" style="--w:65.1%" title="Before 1,900 to 2,200"></span></span><span class="val">1.9–2.2K</span></div>
+            <div class="mrow"><span class="lab">After</span><span class="track"><span class="fill" style="--w:100%" title="After 2,900 to 3,400"></span></span><span class="val">2.9–3.4K</span></div>
+          </div>
+        </div>
+        <div class="pgroup">
+          <div class="pgroup-head"><b>Instagram, animation viewers</b><span class="chg good">Ready</span></div>
+          <div class="mchart">
+            <div class="mrow"><span class="lab">Before</span><span class="track"><span class="fill bench" style="--w:70.5%" title="Before 2,000 to 2,300"></span></span><span class="val">2.0–2.3K</span></div>
+            <div class="mrow"><span class="lab">After</span><span class="track"><span class="fill" style="--w:100%" title="After 2,800 to 3,300"></span></span><span class="val">2.8–3.3K</span></div>
+          </div>
+        </div>
+        <div class="pgroup">
+          <div class="pgroup-head"><b>YouTube, any Juniper video</b><span class="chg good">Ready</span></div>
+          <div class="mchart">
+            <div class="mrow"><span class="lab">Before</span><span class="track"><span class="fill bench" style="--w:88.9%" title="Before 16,000"></span></span><span class="val">16K</span></div>
+            <div class="mrow"><span class="lab">After</span><span class="track"><span class="fill" style="--w:100%" title="After 18,000"></span></span><span class="val">18K</span></div>
+          </div>
+        </div>
+        <div class="pgroup">
+          <div class="pgroup-head"><b>TikTok, per-ad pools</b><span class="chg bad">Not ready</span></div>
+          <div class="mchart">
+            <div class="mrow"><span class="lab">no-sound</span><span class="track"><span class="fill" style="--w:3.6%" title="36 of the 1,000 needed"></span></span><span class="val">36</span></div>
+            <div class="mrow"><span class="lab">song</span><span class="track"><span class="fill" style="--w:0.9%" title="9 of the 1,000 needed"></span></span><span class="val">9</span></div>
+          </div>
+          <p class="small muted">Full track = the 1,000 TikTok needs to target. The pools lag far behind the 2,725 paid 6-second views.</p>
+        </div>
+      </article>
+
+      <article class="panel">
+        <div><div class="chart-title">Frequency</div><div class="chart-sub">Is repetition happening? Average impressions per person, from 1.0 to 2.0.</div></div>
+        <div class="fqs">
+          <div class="fq-row"><span class="lab">TikTok</span><span class="fq" role="img" aria-label="TikTok 1.46 in round 1, 1.40 in round 2"><i class="ln"></i><i class="d r1" style="left:46%" title="Round 1 1.46"></i><i class="d r2" style="left:40%" title="Round 2 1.40"></i></span><span class="val">1.46 → 1.40</span></div>
+          <div class="fq-row"><span class="lab">Instagram</span><span class="fq" role="img" aria-label="Instagram 1.25 in round 1, 1.09 in round 2"><i class="ln"></i><i class="d r1" style="left:25%" title="Round 1 1.25"></i><i class="d r2" style="left:9%" title="Round 2 1.09"></i></span><span class="val">1.25 → 1.09</span></div>
+          <div class="fq-row"><span class="lab">YouTube</span><span class="fq" role="img" aria-label="YouTube 1.0 in both rounds"><i class="ln"></i><i class="d r1" style="left:0%" title="Round 1 1.0"></i><i class="d r2" style="left:0%" title="Round 2 1.0"></i></span><span class="val">1.0 → 1.0</span></div>
+        </div>
+        <p class="small muted">Almost nobody saw Juniper twice in either round. Repetition only comes through retargeting, and YouTube's retarget cells didn't serve in round 2.</p>
+      </article>
+
+      <article class="panel">
+        <div><div class="chart-title">Cheapest cluster per format</div><div class="chart-sub">Stage 1's sub-goal, as of round 2.</div></div>
+        <dl class="facts">
+          <div><dt>Stream clip</dt><dd>TikTok gaming niche, $0.129 per follow. On Instagram the broad control beat interests (7 follows against 1).</dd></div>
+          <div><dt>Animation</dt><dd>The love song held viewers best on all three platforms. Instagram broad was cheapest per follow ($0.87); TikTok anime niche $0.159.</dd></div>
+          <div><dt>Music</dt><dd>Friday only, pending.</dd></div>
+          <div><dt>Crossover, remake</dt><dd>Not repeated in round 2, so no cluster read yet.</dd></div>
+        </dl>
+      </article>
+    </div>
+    <div class="legend"><span><i class="sw bench"></i>Round 1, or before the run</span><span><i class="sw"></i>Round 2, or after the run</span></div>
   </section>
 
   <section id="why" aria-labelledby="why-h">
